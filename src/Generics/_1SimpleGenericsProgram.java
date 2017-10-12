@@ -1,7 +1,13 @@
 package Generics;
 import java.util.*;
 class Automobile{
-
+//	private Automobile a;
+//	public void Holder1(Automobile a){
+//		this.a = a;
+//	}
+//	Automobile get() {
+//		return a;
+//	}
 }
 class Holder3<T>{
 	T ob;
@@ -19,11 +25,10 @@ public class _1SimpleGenericsProgram {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		//Automobile x = "A";
 		Holder3<Automobile> obj = new Holder3<Automobile>(new Automobile());
-		obj.get();
-		//obj.set("aaa");
+		Automobile a = obj.get() ;
+		//obj.set();
 		System.out.println("Generics");
-
 	}
-
 }
