@@ -1,14 +1,14 @@
 # Now I am following those [Books and Resources](http://bit.do/cmabdullah)
-# http://www.javacertifications.org/
-# http://bit.do/cmabdullah
-# https://drive.google.com/open?id=0Bxb0wSnllYnrTVVFRG9jOVdQcWs
-# Sun Java Certification SCJP <br />
-# Oracle Java Certification OCPJP <br />
+##### http://www.javacertifications.net/
+##### http://bit.do/cmabdullah
+##### https://drive.google.com/open?id=0Bxb0wSnllYnrTVVFRG9jOVdQcWs
+## Sun Java Certification SCJP <br />
+## Oracle Java Certification OCPJP <br />
 ## Java SE 8 Programmer I Exam <br />
 https://docs.oracle.com/javase/tutorial/extra/certification/javase-8-programmer1.html
 
 # Oracle Certified Associate, Java SE 8 Programmer
-** OCAJP 8  Exam No: 1Z0-808
+* OCAJP 8  Exam No: 1Z0-808
 
 The Java SE 8 Oracle Certified Associate (OCAJP 8) certification is ideal for those with a technical background and wants to improve, or may be new to object-orientated programming and Java. Candidates who earn their Oracle Certified Associate, Java SE 8 Programmer certification are in a great position to earn the Oracle Certified Professional certification (OCP).
 
@@ -18,14 +18,14 @@ Oracle Java Certifications can be taken from any pearsonvue test centers. Go to 
 
 # Java SE 8 Programmer I
 
-* Exam Name	Java SE 8 Programmer I
-* Java Version	Java SE
-* Exam Number	1Z0-808
-* Exam Format	Multiple Choice
+* Exam Name				Java SE 8 Programmer I
+* Java Version			Java SE
+* Exam Number			1Z0-808
+* Exam Format			Multiple Choice
 * Number of Questions:	80
-* Exam Duration	150 Minutes
-* Passing Score:	65%
-* Cetification Name	Oracle Certified Associate, Java SE 8 Programmer
+* Exam Duration			150 Minutes
+* Passing Score:		65%
+* Cetification Name		Oracle Certified Associate, Java SE 8 Programmer
 
 # Syllabus
 
