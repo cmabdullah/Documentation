@@ -315,7 +315,7 @@ public class _08ConcatennatingAndBufferingFile {
 ```
 
 # 
-## 09 Create File Interactively From Keyboard (observation)
+## 09 Create File Interactively From Keyboard (Depredicted)
 ```java
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -362,11 +362,189 @@ public class _09CreateFileInteractivelyFromKeyboard {
 ```
 
 # 
-## 
+## 10 Use Buffer Reader To Read Character From Terminal
 ```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+public class _10UseBufferReaderToReadCharacterFromConsole {
 
+	public static void main(String[] args) throws IOException{
+		
+		char c;
+		BufferedReader br = null;
+		br =new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter 'q' to quite");
+		do {
+			c = (char)br.read();
+			System.out.print(c);
+		}while(c !='q');
+	}
+}
 ```
 
+# 
+## 11 Use Buffer Reader To Read String From Terminal
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+public class _11UseBufferReaderToReadStringFromConsole {
+
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = null;
+		InputStreamReader ir = null;
+		ir = new InputStreamReader(System.in);
+		br = new BufferedReader(ir);
+		String str;
+		System.out.println("Enter line of text");
+		System.out.println("Enter quite for stop");
+		do {
+			str = br.readLine();
+			System.out.println(str);
+		}while(!str.equals("quite"));
+	}
+}
+```
+# 
+## 12 Use Buffer Reader To Read String Array From Terminal
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+public class _12UseBufferReaderToReadStringArrayFromConsole {
+
+	public static void main(String[] args) throws IOException{
+		InputStreamReader ir = null;
+		ir = new InputStreamReader(System.in);
+		BufferedReader br = null;
+		br = new BufferedReader(ir);
+		String[] str = new String[100];
+		for (int i = 0; i<100;i++) {
+			str[i] = br.readLine();
+			if (str[i].equals("stop"))
+				break;
+		}
+		for (int i = 0; i<100;i++) {
+			if (str[i].equals("stop"))
+				break;
+			System.out.println(str[i]);			
+		}
+	}
+}
+```
+# 
+## 13 Writing Console Output USing SystemOutWriteMethod
+```java
+
+public class _13WritingConsoleOutputUSingSystemOutWriteMethod {
+
+	public static void main(String[] args) {
+		int c;
+		c = 'A';
+		System.out.write(c);	
+		System.out.write('\n');	
+	}
+}
+```
+# 
+## 14 Demonstrate PrintWriter
+```java
+import java.io.PrintWriter;
+
+public class _14DemonstratePrintWriter {
+
+	public static void main(String[] args) {
+		PrintWriter pw = null;
+		pw = new PrintWriter(System.out, true);
+		pw.println("hi C M ");// do not use print()
+		String name = "Abdullah";
+		pw.println(name);
+	}
+}
+```
+# 
+## 15 Display A Text File Input From Terminal
+```java
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+/***
+➜  src git:(master) ✗ ls
+Test.txt
+_15DisplayATextFileInputFromTerminal.java
+➜  src git:(master) ✗ javac _15DisplayATextFileInputFromTerminal.java
+➜  src git:(master) ✗ java _15DisplayATextFileInputFromTerminal Test.txt
+Bangladesh officially the People's Republic of Bangladesh, is a country in South Asia. It shares land borders with India and Myanmar (Burma). Nepal, Bhutan and China are located near Bangladesh but do not share a border with it.
+￿%                                                                              ➜  src git:(master) ✗ 
+ * **/
+public class _15DisplayATextFileInputFromTerminal {
+
+	public static void main(String[] args) throws IOException {
+		int i;
+		FileInputStream fin = null;
+		try {
+			fin = new FileInputStream(args[0]);
+		}catch(FileNotFoundException e) {
+			System.out.println("File not found");
+			return;
+		}catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("Usage: Show File");
+			return;
+		}
+		do {
+			i = fin.read();
+			System.out.print((char)i);
+		}while(i != -1);
+		fin.close();
+	}
+}
+```
+# 
+## 16 Copy One Text File To Another Input From Terminal
+```java
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+public class _16CopyOneTextFileToAnotherInputFromTerminal {
+
+	public static void main(String[] args) throws IOException{
+		int i;
+		FileInputStream fin = null;
+		FileOutputStream fout = null;
+		try {
+			try {
+				fin = new FileInputStream(args[0]);
+			}catch(FileNotFoundException e) {
+				System.out.println("File not found ");
+				return;
+			}
+			
+			try {
+				fout = new FileOutputStream(args[1]);
+			}catch(FileNotFoundException e) {
+				System.out.println("Error not open file");
+				return;
+			}
+		}catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("Copy file from To");
+			return ;
+		}
+	
+		try {
+			do {
+				i = fin.read();
+				if (i != -1) fout.write(i);
+			}while(i!= -1);				
+		}catch(IOException e) {
+			System.out.print("File error");
+		}
+	fin.close();
+	fout.close();
+	}
+}
+```
 # 
 ## 
 ```java

@@ -1,6 +1,7 @@
 # Now I am following those [Books and Resources](http://bit.do/cmabdullah)
 ##### http://www.javacertifications.net/
 ##### http://bit.do/cmabdullah
+##### https://www.javatpoint.com/java-tutorial
 ##### https://drive.google.com/open?id=0Bxb0wSnllYnrTVVFRG9jOVdQcWs
 ## Sun Java Certification SCJP <br />
 ## Oracle Java Certification OCPJP <br />
