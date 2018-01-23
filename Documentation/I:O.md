@@ -76,7 +76,7 @@ public class _02ReadingAndByte {
 
 
 # 
-## 03 Reading Byte FromFile
+## 03 Reading Byte From Terminal
 ```java
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -110,7 +110,7 @@ public class _03ReadingByteFromFile {
 ```
 
 # 
-## 04 Reading ByteFrom File
+## ~~04 Reading ByteFrom File~~
 ```java
 import java.io.File;
 import java.io.FileReader;
