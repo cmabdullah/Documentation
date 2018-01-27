@@ -546,7 +546,310 @@ public class _16CopyOneTextFileToAnotherInputFromTerminal {
 }
 ```
 # 
-## 
+## 18 Determines If The Path It References Exists Within The FileSystem
 ```java
+import java.io.File;
 
+public class _17DeterminesIfThePathItReferencesExistsWithinTheFileSystem {
+
+	public static void main(String[] args) {
+		File file = new File("input.txt");
+		System.out.println(file.exists());
+	}
+}
+```
+
+# 
+## 18 Read File Information
+```java
+import java.io.File;
+public class _18ReadFileInformation {
+	
+	public static void main(String[] args) {
+		File file = new File("input.txt"); 
+		System.out.println("File Exists: "+file.exists()); 
+			if(file.exists()) {
+				System.out.println("Absolute Path: "+file.getAbsolutePath()); 
+				System.out.println("Is Directory: "+file.isDirectory()); 
+				System.out.println("Parent Path: "+file.getParent()); 
+				if(file.isFile()) {
+				System.out.println("File size: "+file.length());
+				System.out.println("File LastModified: "+file.lastModified()); 
+				} 
+			else {
+				for(File subfile: file.listFiles()) { 
+					System.out.println("\t"+subfile.getName());
+				} 
+			}
+		}
+	}
+}
+```
+
+# 
+## 19 Copy Text File Sample
+```java
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class _19CopyTextFileSample {
+
+	public static List<String> readFile(File source) throws IOException {
+		List<String> data = new ArrayList<String>();
+		try (BufferedReader reader = new BufferedReader(new FileReader(source))) {
+			String s;
+			while((s = reader.readLine()) != null) {
+				data.add(s); }
+		}
+		return data; 
+	}
+	public static void writeFile(List<String> data, File destination) throws IOException {
+		try (BufferedWriter writer = new BufferedWriter(
+				new FileWriter(destination))) {
+			for(String s: data) { writer.write(s);
+			writer.newLine(); }
+			} 
+		}
+	public static void main(String[] args) throws IOException{
+		File source = new File("Zoo.csv");
+		File destination = new File("ZooCopy.csv");
+		List<String> data = readFile(source);
+		for(String record: data) { System.out.println(record);
+		}
+		writeFile(data,destination);
+	}
+}
+```
+
+# 
+## 20 Object Stream Sample
+```java
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+//animal class start
+class Animal implements Serializable { 
+	private static final long serialVersionUID = 1L; 
+	private String name;
+	private int age;
+	private char type;
+	public Animal(String name, int age, char type) { 
+		this.name = name;
+		this.age = age;
+		this.type = type;
+	}
+	public String getName() { 
+		return name; 
+	} 
+	public int getAge() { 
+		return age; 
+	} 
+	public char getType() { 
+		return type; 
+	}
+	public String toString() {
+	return "Animal [name=" + name + ", age=" + age + ", type=" + type + "]";
+	} 
+}
+
+//end animal class
+public class _20ObjectStreamSample {
+
+	public static List<Animal> getAnimals(File dataFile) throws IOException, ClassNotFoundException {
+		List<Animal> animals = new ArrayList<Animal>(); 
+		try (ObjectInputStream in = new ObjectInputStream(
+				new BufferedInputStream(new FileInputStream(dataFile)))) { 
+			while(true) {
+				Object object = in.readObject(); 
+				if(object instanceof Animal)
+					animals.add((Animal)object); 
+			}
+		} catch (EOFException e) { // File end reached
+		}
+		return animals; 
+	}
+
+	public static void createAnimalsFile(List<Animal> animals, File dataFile) throws IOException {
+		try (ObjectOutputStream out = new ObjectOutputStream(
+				new BufferedOutputStream(new FileOutputStream(dataFile)))) {
+			for(Animal animal: animals) out.writeObject(animal);
+		} 
+	}
+
+	public static void main(String[] args)  throws IOException, ClassNotFoundException {
+		List<Animal> animals = new ArrayList<Animal>(); 
+		animals.add(new Animal("Tommy Tiger",5,'T')); 
+		animals.add(new Animal("Peter Penguin",8,'P'));
+		File dataFile = new File("animal.data"); 
+		createAnimalsFile(animals,dataFile); 
+		System.out.println(getAnimals(dataFile));
+	}
+}
+```
+
+# 
+## 21 Sample Print Writer
+```java
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class _21SamplePrintWriter {
+
+	public static void main(String[] args) throws IOException{
+		File source = new File("Zoo.csv");
+		try (PrintWriter out = new PrintWriter(
+		new BufferedWriter(new FileWriter(source)))) { 
+		out.print("Today's weather is: "); 
+		out.println("Sunny");
+		out.print("Today's temperature at the zoo is: "); 
+		out.print(1/3.0);
+		out.println('C');
+		out.format("It has rained 10.12 inches this year"); 
+		out.println();
+		out.printf("It may rain 21.2 more inches this year");
+		}
+	}
+}
+```
+
+# 
+## 22 SystemIn Sample Old Way
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class _22SystemInSampleOldWay {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader reader = new BufferedReader(
+		new InputStreamReader(System.in));
+		String userInput = reader.readLine();
+		System.out.println("You entered the following: "+userInput);
+	}
+}
+```
+
+
+# 
+## 23 Console Sample New Way
+```java
+import java.io.Console;
+
+public class _23ConsoleSampleNewWay {
+
+	public static void main(String[] args) {
+		Console console = System.console(); 
+		if(console != null) {
+		String userInput = console.readLine();
+		console.writer().println ("You entered the following: "+userInput); }
+	}
+}
+```
+
+
+# 
+## 24 Console Sample Print
+```java
+import java.io.Console;
+import java.io.IOException;
+public class _24ConsoleSamplePrint {
+
+	public static void main(String[] args) throws NumberFormatException, IOException{
+		Console console = System.console(); 
+		if(console == null) {
+		throw new RuntimeException("Console not available"); 
+		} 
+		else {
+		console.writer().println("Welcome to Our Zoo!"); 
+		console.format("Our zoo has 391 animals and employs 25 people."); 
+		console.writer().println();
+		console.printf("The zoo spans 128.91 acres.");
+		}
+	}
+}
+```
+
+
+# 
+## 25 Console Read Input Sample
+```java
+import java.io.BufferedReader;
+import java.io.Console;
+import java.io.IOException;
+
+public class _25ConsoleReadInputSample {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Console console = System.console(); 
+		if(console == null) {
+			throw new RuntimeException("Console not available"); 
+		} 
+		else {
+			console.writer().print("How excited are you about your trip today? "); console.flush();
+			String excitementAnswer = console.readLine();
+			String name = console.readLine("Please enter your name: ");
+			Integer age = null;
+			console.writer().print("What is your age? "); 
+			console.flush();
+			BufferedReader reader = new BufferedReader(console.reader()); 
+			String value = reader.readLine();
+			age = Integer.valueOf(value);
+			console.writer().println();
+			console.format("Your name is "+name); 
+			console.writer().println();
+			console.format("Your age is "+age);
+			console.printf("Your excitement level is: "+excitementAnswer);
+		}
+	}
+}
+```
+
+
+# 
+## 26 Password Compare Sample
+```java
+import java.io.Console;
+import java.io.IOException;
+import java.util.Arrays;
+
+public class _26PasswordCompareSample {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Console console = System.console(); 
+		if(console == null) {
+		throw new RuntimeException("Console not available"); 
+		} 
+		else {
+			char[] password = console.readPassword("Enter your password: ");
+			console.format("Enter your password again: "); 
+			console.flush();
+			char[] verify = console.readPassword();
+			boolean match = Arrays.equals(password,verify);
+			// Immediately clear passwords from memory for(int i=0; i<password.length; i++) {
+			for(int i=0; i<verify.length; i++) { 
+				verify[i]='x';
+			}
+			console.format("Your password was "+(match ? "correct": "incorrect"));
+		}
+	}
+}
 ```
