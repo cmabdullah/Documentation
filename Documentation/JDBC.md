@@ -1,4 +1,13 @@
 # JDBC in java
+
+
+
+> How to connect Java application with Oracle and Mysql database using JDBC?
+> What is the difference between Statement and PreparedStatement interface?
+> How to print total numbers of tables and views of a database using JDBC ?
+> How to store and retrieve images from Oracle database using JDBC?
+> How to store and retrieve files from Oracle database using JDBC?
+
 ## Example to Connect Java Application with mysql database
 ```java
 import java.sql.Connection;
