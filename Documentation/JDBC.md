@@ -227,14 +227,34 @@ public class _03JDBC_PreparedStatement_Update {
 }//end JDBCExample
 ```
 
-## 03 JDBC Prepared Statement Update
+## 04 JDBC Callable Statement Store Procedure
+
+	CREATE DEFINER=`root`@`localhost` PROCEDURE `getEmpName`
+	(IN EMP_ID INT, OUT EMP_FIRST VARCHAR(255))
+	BEGIN
+	SELECT first INTO EMP_FIRST FROM Employees 
+	WHERE id = EMP_ID;
+	END
+
+
 ```java
 //STEP 1. Import required packages
 import java.sql.*;
-public class _03JDBC_PreparedStatement_Update {
+
+//store procedure process
+/***
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getEmpName`
+(IN EMP_ID INT, OUT EMP_FIRST VARCHAR(255))
+BEGIN
+SELECT first INTO EMP_FIRST FROM Employees 
+WHERE id = EMP_ID;
+END
+ * */
+public class _04JDBC_CallableStatementStoreProcedure {
 	
 	public static void main(String[] args) {
-	
+
+		CallableStatement stmt = null;
 		try{
 			//STEP 2: Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
@@ -244,31 +264,20 @@ public class _03JDBC_PreparedStatement_Update {
 					"jdbc:mysql://localhost:3306/EMP?autoReconnect=true&useSSL=false","root","rootcm");
 			//STEP 4: Execute a query
 			System.out.println("Creating statement...");
-
-			String sql = "UPDATE Employees set age=? WHERE id=?";
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			//Bind values into the parameters.
-			stmt.setInt(1, 100);  // This would set age, here age is 100 @cm
-			stmt.setInt(2, 11); // This would set ID , here 11 is the index number @cm
-			// Let us update age of the record with ID = 102;
-			int rows = stmt.executeUpdate();
-			System.out.println("Rows impacted : " + rows );
-			// Let us select all the records and display them.
-			sql = "SELECT id, first, last, age FROM Employees";
-			ResultSet rs = stmt.executeQuery(sql);
-			//STEP 5: Extract data from result set	       
-			while(rs.next()){
-				//Retrieve by column name
-				int id  = rs.getInt("id");
-				int age = rs.getInt("age");
-				String first = rs.getString("first");
-				String last = rs.getString("last");
-				//Display values
-				System.out.print("ID: " + id);
-				System.out.print(", Age: " + age);
-				System.out.print(", First: " + first);
-				System.out.println(", Last: " + last);
-			}
+			String sql = "{call getEmpName (?, ?)}";
+			stmt = conn.prepareCall(sql);
+			//Bind IN parameter first, then bind OUT parameter 
+			int empID = 9;
+			stmt.setInt(1, empID); // This would set ID as 102 // Because second parameter is OUT so register it 
+			stmt.registerOutParameter(2, java.sql.Types.VARCHAR);
+			//Use execute method to run stored procedure.
+			System.out.println("Executing stored procedure..." );
+			stmt.execute();
+			//Retrieve employee name with getXXX method
+			String empName = stmt.getString(2);
+			System.out.println("Emp Name with ID:" + empID + " is " + empName);
+			stmt.close();
+			conn.close();
 		}catch(SQLException se){
 			//Handle errors for JDBC
 			se.printStackTrace();
