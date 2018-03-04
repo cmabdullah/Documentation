@@ -508,9 +508,590 @@ public class _06JDBC_UpdatingAResultSet {
 	}//end main
 }
 ```
-```java
 
+
+## 07 Date And Time Data Types
+```java
+//import java.sql.Date;
+//import java.sql.Time;
+//import java.sql.Timestamp;
+//page 61
+public class _07DateAndTimeDataTypes {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//Get standard date and time
+		java.util.Date javaDate = new java.util.Date(); 
+		long javaTime = javaDate.getTime(); 
+		System.out.println("The Java Date is:" +javaDate.toString());
+		//Get and display SQL DATE
+		java.sql.Date sqlDate = new java.sql.Date(javaTime); 
+		System.out.println("The SQL DATE is: " + sqlDate.toString());
+		//Get and display SQL TIME
+		java.sql.Time sqlTime = new java.sql.Time(javaTime); 
+		System.out.println("The SQL TIME is: " + sqlTime.toString());
+		//Get and display SQL TIMESTAMP 
+		java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(javaTime); 
+		System.out.println("The SQL TIMESTAMP is: " + sqlTimestamp.toString());
+	}
+}
 ```
+
+
+## 08 JDBC Transections Commit And Rollback
+
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+//page 63
+public class _08JDBC_TransectionsCommitAndRollback {
+
+	public static void printRs(ResultSet rs) throws SQLException{
+		//Ensure we start with first row
+		rs.beforeFirst();
+		while(rs.next()){
+			//Retrieve by column name
+			int id  = rs.getInt("id");
+			int age = rs.getInt("age");
+			String first = rs.getString("first");
+			String last = rs.getString("last");
+			//Display values
+			System.out.print("ID: " + id);
+			System.out.print(", Age: " + age);
+			System.out.print(", First: " + first);
+			System.out.println(", Last: " + last);
+		}
+		System.out.println();
+	}//end printRs()	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Statement stmt = null;
+		Connection conn = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/EMP?autoReconnect=true&useSSL=false","root","rootcm");
+			//STEP 4: Set auto commit as false.
+			conn.setAutoCommit(false);
+			//STEP 5: Execute a query to create statment with
+			// required arguments for RS example.
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			//STEP 6: INSERT a row into Employees table
+			System.out.println("Inserting one row....");
+			String SQL = "INSERT INTO Employees " + "VALUES (106, 20, 'Rita', 'Tez')";
+			stmt.executeUpdate(SQL);
+
+			//STEP 7: INSERT one more row into Employees table 
+			SQL = "INSERT INTO Employees " +"VALUES (107, 22, 'Sita', 'Singh')";
+			stmt.executeUpdate(SQL);
+			//STEP 8: Commit data here.
+			System.out.println("Commiting data here....");
+			conn.commit();
+			//STEP 9: Now list all the available records.
+			String sql = "SELECT id, first, last, age FROM Employees"; 
+			ResultSet rs = stmt.executeQuery(sql); 
+			System.out.println("List result set for reference....");
+
+			printRs(rs);
+			//STEP 10: Clean-up environment
+			rs.close();
+			stmt.close();
+			conn.close();
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+			// If there is an error then rollback the changes.
+			System.out.println("Rolling back data here....");
+			try{
+				if(conn!=null)
+					conn.rollback();
+			}catch(SQLException se2){
+				se2.printStackTrace();
+			}//end try
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}
+		System.out.println("Goodbye!");
+	}//end main
+}
+```
+
+
+## 09 JDBC Transections Commit And Rollbacks SavePoint
+```java
+//page 70
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Savepoint;
+import java.sql.Statement;
+public class _09JDBC_TransectionsCommitAndRollbackSSavePoint {
+
+	public static void printRs(ResultSet rs) throws SQLException{ //Ensure we start with first row
+		rs.beforeFirst();
+		while(rs.next()){
+			//Retrieve by column name
+			int id  = rs.getInt("id");
+			int age = rs.getInt("age");
+			String first = rs.getString("first");
+			String last = rs.getString("last");
+			//Display values
+			System.out.print("ID: " + id); 
+			System.out.print(", Age: " + age); 
+			System.out.print(", First: " + first); 
+			System.out.println(", Last: " + last);
+		}
+		System.out.println();
+	}//end printRs()
+
+	public static void main(String[] args) {
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/EMP?autoReconnect=true&useSSL=false","root","rootcm");	
+
+			//STEP 4: Set auto commit as false.
+			conn.setAutoCommit(false);
+			//STEP 5: Execute a query to delete statment with // required arguments for RS example. 
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+			//STEP 6: Now list all the available records.
+			String sql = "SELECT id, first, last, age FROM Employees";
+			ResultSet rs = stmt.executeQuery(sql);
+			System.out.println("List result set for reference....");
+			printRs(rs);
+			// STEP 7: delete rows having ID grater than 104
+			// But save point before doing so.
+			Savepoint savepoint1 = conn.setSavepoint("ROWS_DELETED_1");
+			System.out.println("Deleting row....");
+			String SQL = "DELETE FROM Employees " +
+					"WHERE ID = 107";
+			stmt.executeUpdate(SQL);
+			// oops... we deleted too wrong employees!
+			//STEP 8: Rollback the changes afetr save point 2.
+			conn.rollback(savepoint1);
+			// STEP 9: delete rows having ID grater than 104
+			// But save point before doing so.
+			Savepoint savepoint2 = conn.setSavepoint("ROWS_DELETED_2");
+			System.out.println("Deleting row....");
+			SQL = "DELETE FROM Employees " +
+					"WHERE ID = 107";
+			stmt.executeUpdate(SQL);
+			//STEP 10: Now list all the available records.
+			sql = "SELECT id, first, last, age FROM Employees";
+			rs = stmt.executeQuery(sql);
+			System.out.println("List result set for reference....");
+
+			printRs(rs);
+			//STEP 10: Clean-up environment
+			rs.close();
+			stmt.close();
+			conn.close();
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+			// If there is an error then rollback the changes.
+			System.out.println("Rolling back data here....");
+			try{
+				if(conn!=null)
+					conn.rollback();
+			}catch(SQLException se2){
+				se2.printStackTrace();
+			}//end try
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}
+		System.out.println("Goodbye!");
+	}//end try
+}//end main
+```
+
+## 10 JDBC Exceptions
+```java
+// page 75
+import java.sql.*;
+public class _10JDBC_Exceptions {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/EMP?autoReconnect=true&useSSL=false","root","rootcm");	
+			//STEP 4: Execute a query
+			System.out.println("Creating statement...");
+			Statement stmt = conn.createStatement();
+			String sql;
+			sql = "SELECT id, first, last, age FROM Employees";
+			ResultSet rs = stmt.executeQuery(sql);
+			//STEP 5: Extract data from result set
+			while(rs.next()){
+				//Retrieve by column name
+				int id  = rs.getInt("id");
+				int age = rs.getInt("age");
+				String first = rs.getString("first");
+				String last = rs.getString("last");
+				//Display values
+				System.out.print("ID: " + id);
+				System.out.print(", Age: " + age);
+				System.out.print(", First: " + first);
+				System.out.println(", Last: " + last);
+			}
+			//STEP 6: Clean-up environment
+			rs.close();
+			stmt.close();
+			conn.close();
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main
+}//end JDBCExample
+```
+
+## 11 JDBC Batch Processing
+```java
+//page 80
+import java.sql.*;
+public class _11JDBC_BatchProcessing {
+	public static void printRows(Statement stmt) throws SQLException{ 
+		System.out.println("Displaying available rows...");
+		// Let us select all the records and display them.
+		String sql = "SELECT id, first, last, age FROM Employees"; 
+		ResultSet rs = stmt.executeQuery(sql);
+		while(rs.next()){
+			//Retrieve by column name
+			int id  = rs.getInt("id");
+			int age = rs.getInt("age");
+			String first = rs.getString("first");
+			String last = rs.getString("last");
+			//Display values
+			System.out.print("ID: " + id);
+			System.out.print(", Age: " + age);
+			System.out.print(", First: " + first);
+			System.out.println(", Last: " + last);
+		}
+		System.out.println();
+		rs.close();
+	}//end printRows()
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			// Open a connection
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/EMP?autoReconnect=true&useSSL=false","root","rootcm");
+			// Create statement
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+			// Set auto-commit to false
+			conn.setAutoCommit(false);
+			// First, let us select all the records and display them.
+			printRows( stmt );
+			// Create SQL statement
+			String SQL = "INSERT INTO Employees (id, first, last, age) " +
+					"VALUES(200,'Zia', 'Ali', 30)";
+
+			// Add above SQL statement in the batch.
+			stmt.addBatch(SQL);
+			// Create one more SQL statement
+			SQL = "INSERT INTO Employees (id, first, last, age) " +
+					"VALUES(201,'Raj', 'Kumar', 35)";
+			// Add above SQL statement in the batch.
+			stmt.addBatch(SQL);
+			// Create one more SQL statement
+			SQL = "UPDATE Employees SET age = 35 " +
+					"WHERE id = 100";
+			// Add above SQL statement in the batch.
+			stmt.addBatch(SQL);
+			// Create an int[] to hold returned values
+			int[] count = stmt.executeBatch();
+			//Explicitly commit statements to apply changes
+			conn.commit();
+			// Again, let us select all the records and display them.
+			printRows( stmt );
+			// Clean-up environment
+			stmt.close();
+			conn.close();
+
+
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(stmt!=null)
+					stmt.close();
+			}catch(SQLException se2){
+			}// nothing we can do
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main
+}
+```
+
+## 12 JDBC Batching With PrepareStatement Object
+```java
+import java.sql.*;
+//page 86
+public class _12JDBCBatchingWithPrepareStatementObject {
+
+	public static void printRows(Statement stmt) throws SQLException{ 
+		System.out.println("Displaying available rows...");	
+		// Let us select all the records and display them.
+		String sql = "SELECT id, first, last, age FROM Employees";
+		ResultSet rs = stmt.executeQuery(sql);
+		while(rs.next()){
+			//Retrieve by column name
+			int id  = rs.getInt("id");
+			int age = rs.getInt("age");
+			String first = rs.getString("first");
+			String last = rs.getString("last");
+			//Display values
+			System.out.print("ID: " + id);
+			System.out.print(", Age: " + age);
+			System.out.print(", First: " + first);
+			System.out.println(", Last: " + last);
+		}
+		System.out.println();
+		rs.close();
+	}//end printRows()
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try{
+
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			// Open a connection
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/EMP?autoReconnect=true&useSSL=false","root","rootcm");
+			// Create SQL statement
+			String SQL = "INSERT INTO Employees(id,first,last,age) " + "VALUES(?, ?, ?, ?)";
+			// Create preparedStatemen
+			System.out.println("Creating statement...");
+			stmt = conn.prepareStatement(SQL);
+			// Set auto-commit to false
+			conn.setAutoCommit(false);
+			// First, let us select all the records and display them.
+			printRows( stmt );
+			// Set the variables
+			stmt.setInt( 1, 400 );
+			stmt.setString( 2, "Pappu" );
+			stmt.setString( 3, "Singh" );
+			stmt.setInt( 4, 33 );
+			// Add it to the batch
+			stmt.addBatch();
+			// Set the variables
+			stmt.setInt( 1, 401 );
+			stmt.setString( 2, "Pawan" );
+			stmt.setString( 3, "Singh" );
+			stmt.setInt( 4, 31 );
+			// Add it to the batch
+			stmt.addBatch();
+
+			// Create an int[] to hold returned values
+			int[] count = stmt.executeBatch();
+			//Explicitly commit statements to apply changes
+			conn.commit();
+			// Again, let us select all the records and display them. 
+			printRows( stmt );
+			// Clean-up environment
+			stmt.close();
+			conn.close();
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(stmt!=null)
+					stmt.close();
+			}catch(SQLException se2){
+			}// nothing we can do
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main 	
+}
+```
+
+## 13 JDBC Streaming Data
+
+
+
+```java
+//page 96
+// Import required packages
+import java.sql.*;
+import java.io.*;
+import java.util.*;
+
+public class _13JDBCStreamingData {
+
+	public static void createXMLTable(Statement stmt) throws SQLException{
+		System.out.println("Creating XML_Data table..." ); //Create SQL Statement
+		String streamingDataSql = "CREATE TABLE XML_Data " + "(id INTEGER, Data LONG)";
+		//Drop table first if it exists.
+		try{
+			stmt.executeUpdate("DROP TABLE XML_Data");
+		}catch(SQLException se){
+		}// do nothing
+		//Build table.
+		stmt.executeUpdate(streamingDataSql);
+	}//end createXMLTable
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		try{
+			// Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			// Open a connection
+			System.out.println("Connecting to database..."); 
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/EMP?autoReconnect=true&useSSL=false","root","rootcm");
+			//Create a Statement object and build table
+			stmt = conn.createStatement();
+			createXMLTable(stmt);
+			//Open a FileInputStream
+			File f = new File("/Users/abdullah/Documents/ServletAndJsp/jdbc/src/XML_Data.xml");
+			long fileLength = f.length();
+			FileInputStream fis = new FileInputStream(f);
+			//Create PreparedStatement and stream data
+			String SQL = "INSERT INTO XML_Data VALUES (?,?)";
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1,100);
+			pstmt.setAsciiStream(2,fis,(int)fileLength);
+			pstmt.execute();
+			//Close input stream
+			fis.close();
+
+			// Do a query to get the row
+			SQL = "SELECT Data FROM XML_Data WHERE id=100";
+			rs = stmt.executeQuery (SQL);
+			// Get the first row
+			if (rs.next ()){
+				//Retrieve data from input stream
+				InputStream xmlInputStream = rs.getAsciiStream (1);
+				int c;
+				ByteArrayOutputStream bos = new ByteArrayOutputStream(); 
+				while (( c = xmlInputStream.read ()) != -1)
+					bos.write(c);
+				//Print results
+				System.out.println(bos.toString());
+			}
+			// Clean-up environment
+			rs.close();
+			stmt.close();
+			pstmt.close();
+			conn.close();
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(stmt!=null)
+					stmt.close();
+			}catch(SQLException se2){
+			}// nothing we can do
+			try{
+				if(pstmt!=null)
+					pstmt.close();
+			}catch(SQLException se2){
+			}// nothing we can do
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main
+}
+```
+
+#### XML_Data.xml
+```xml
+<?xml version="1.0"?>
+<Employee>
+<id>100</id>
+<first>Zara</first>
+<last>Ali</last>
+<Salary>10000</Salary>
+<Dob>18-08-1978</Dob>
+</Employee>
+```
+
+
+
 ```java
 
 ```
