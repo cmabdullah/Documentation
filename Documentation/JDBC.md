@@ -1,7 +1,5 @@
 # JDBC in java
 
-
-
 > How to connect Java application with Oracle and Mysql database using JDBC?
 
 > What is the difference between Statement and PreparedStatement interface?
@@ -1090,18 +1088,762 @@ public class _13JDBCStreamingData {
 </Employee>
 ```
 
-
+## 14 JDBC Create Database
 
 ```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+//page 101
+public class _14JDBC_CreateDatabase {
 
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/?autoReconnect=true&useSSL=false","root","rootcm");
+			//EMP?autoReconnect=true&useSSL=false
+			//STEP 4: Execute a query
+			System.out.println("Creating database...");
+			stmt = conn.createStatement();
+			String sql = "CREATE DATABASE STUDENTS";
+			stmt.executeUpdate(sql);
+			System.out.println("Database created successfully...");
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(stmt!=null)
+					stmt.close();
+			}catch(SQLException se2){
+			}// nothing we can do
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main
+}//end JDBCExample
 ```
+
+
+
+## 15 JDVC Select Database
 ```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+//page 104
+public class _15JDVC_SelectDatabase {
 
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to a selected database..."); 
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/STUDENTS?autoReconnect=true&useSSL=false","root","rootcm");
+			System.out.println("Connected database successfully...");
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main
+}//end JDBCExample
 ```
+
+## 16 JDBC Drop Database
 ```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+//page 107
+public class _16JDBC_DropDatabase {
 
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to a selected database...");
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/?autoReconnect=true&useSSL=false","root","rootcm");
+			System.out.println("Connected database successfully...");
+			//STEP 4: Execute a query
+			System.out.println("Deleting database...");
+			stmt = conn.createStatement();
+			String sql = "DROP DATABASE STUDENTS";
+			stmt.executeUpdate(sql);
+			System.out.println("Database deleted successfully...");
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(stmt!=null)
+					conn.close();
+			}catch(SQLException se){
+			}// do nothing
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main
+}//end JDBCExample
 ```
+
+## 17 JDBC Create Tables
 ```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+//page 109
+public class _17JDBC_CreateTables {
 
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to a selected database..."); 
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/STUDENTS?autoReconnect=true&useSSL=false","root","rootcm");
+			System.out.println("Connected database successfully...");
+			//STEP 4: Execute a query
+			System.out.println("Creating table in given database...");
+			stmt = conn.createStatement();
+			String sql = "CREATE TABLE REGISTRATION " +
+					"(id INTEGER not NULL, " +
+					" first VARCHAR(255), " +
+					" last VARCHAR(255), " +
+					" age INTEGER, " +
+					" PRIMARY KEY ( id ))";
+			stmt.executeUpdate(sql);
+			System.out.println("Created table in given database...");
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(stmt!=null)
+					conn.close();
+			}catch(SQLException se){
+			}// do nothing
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main
+}//end JDBCExample
 ```
 
+## 18 JDBC Drop Tables
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+//page 113
+public class _18JDBC_DropTables {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to a selected database...");
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/STUDENTS?autoReconnect=true&useSSL=false","root","rootcm");
+			System.out.println("Connected database successfully...");
+			//STEP 4: Execute a query
+			System.out.println("Deleting table in given database...");
+			stmt = conn.createStatement();
+			String sql = "DROP TABLE REGISTRATION ";
+			stmt.executeUpdate(sql);
+			System.out.println("Table  deleted in given database...");
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(stmt!=null)
+					conn.close();
+			}catch(SQLException se){
+			}// do nothing
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main
+}//end JDBCExample
+```
+
+## 19 JDBC Insert Records
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+//page 116
+public class _19JDBC_InsertRecords {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to a selected database...");
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/STUDENTS?autoReconnect=true&useSSL=false","root","rootcm"); 
+			System.out.println("Connected database successfully...");
+			//STEP 4: Execute a query
+			System.out.println("Inserting records into the table..."); stmt = conn.createStatement();
+			String sql = "INSERT INTO Registration " +
+					"VALUES (300, 'Zara', 'Ali', 18)";
+			stmt.executeUpdate(sql);
+			sql = "INSERT INTO Registration " +
+					"VALUES (301, 'Mahnaz', 'Fatma', 25)";
+			stmt.executeUpdate(sql);
+			sql = "INSERT INTO Registration " +
+					"VALUES (302, 'Zaid', 'Khan', 30)";
+			stmt.executeUpdate(sql);
+			sql = "INSERT INTO Registration " +
+					"VALUES(103, 'Sumit', 'Mittal', 28)";
+			stmt.executeUpdate(sql);
+			System.out.println("Inserted records into the table...");
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(stmt!=null)
+					conn.close();
+			}catch(SQLException se){
+			}// do nothing
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main
+}//end JDBCExample
+```
+
+## 20 JDBC Select Records
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+//page 119
+public class _20JDBC_SelectRecords {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to a selected database...");
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/STUDENTS?autoReconnect=true&useSSL=false","root","rootcm");
+			System.out.println("Connected database successfully...");
+			//STEP 4: Execute a query
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+			String sql = "SELECT id, first, last, age FROM Registration";
+			ResultSet rs = stmt.executeQuery(sql);
+			//STEP 5: Extract data from result set
+			while(rs.next()){
+				//Retrieve by column name
+				int id  = rs.getInt("id");
+				int age = rs.getInt("age");
+				String first = rs.getString("first");
+				String last = rs.getString("last");
+				//Display values
+				System.out.print("ID: " + id);
+				System.out.print(", Age: " + age);
+				System.out.print(", First: " + first);
+				System.out.println(", Last: " + last);
+			}
+			rs.close();
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(stmt!=null)
+					conn.close();
+			}catch(SQLException se){
+			}// do nothing
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main
+}//end JDBCExample
+```
+
+## 21 JDBC Update Records
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+//page 122
+public class _21JDBC_UpdateRecords {
+
+	public static void main(String[] args) {
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to a selected database...");
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/STUDENTS?autoReconnect=true&useSSL=false","root","rootcm");
+			System.out.println("Connected database successfully...");
+			//STEP 4: Execute a query
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+			String sql = "UPDATE Registration " + "SET age = 30 WHERE id in (100, 101)"; 
+			stmt.executeUpdate(sql);
+			// Now you can extract all the records
+			// to see the updated records
+			sql = "SELECT id, first, last, age FROM Registration";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				//Retrieve by column name
+				int id  = rs.getInt("id");
+				int age = rs.getInt("age");
+				String first = rs.getString("first");
+				String last = rs.getString("last");
+				//Display values
+				System.out.print("ID: " + id);
+				System.out.print(", Age: " + age);
+				System.out.print(", First: " + first);
+				System.out.println(", Last: " + last);
+			}
+			rs.close();
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(stmt!=null)
+					conn.close();
+			}catch(SQLException se){
+			}// do nothing
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main
+}//end JDBCExample
+```
+
+## 22 JDBC Delete Records
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+//page 127
+public class _22JDBC_DeleteRecords {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to a selected database...");
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/STUDENTS?autoReconnect=true&useSSL=false","root","rootcm");
+			System.out.println("Connected database successfully...");
+			//STEP 4: Execute a query
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+			String sql = "DELETE FROM Registration " + "WHERE id = 101";
+			stmt.executeUpdate(sql);
+			// Now you can extract all the records
+			// to see the remaining records
+			sql = "SELECT id, first, last, age FROM Registration";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				//Retrieve by column name
+				int id  = rs.getInt("id");
+				int age = rs.getInt("age");
+				String first = rs.getString("first");
+				String last = rs.getString("last");
+				//Display values
+				System.out.print("ID: " + id);
+				System.out.print(", Age: " + age);
+				System.out.print(", First: " + first);
+				System.out.println(", Last: " + last);
+			}
+			rs.close();
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(stmt!=null)
+					conn.close();
+			}catch(SQLException se){
+			}// do nothing
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main
+}//end JDBCExample
+```
+
+## 23 JDBC Where Clause
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class _23JDBC_WhereClause {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to a selected database...");
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/STUDENTS?autoReconnect=true&useSSL=false","root","rootcm");
+			System.out.println("Connected database successfully...");
+			//STEP 4: Execute a query
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+			// Extract records without any condition. 
+			System.out.println("Fetching records without condition..."); 
+			String sql = "SELECT id, first, last, age FROM Registration"; 
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				//Retrieve by column name
+				int id  = rs.getInt("id");
+				int age = rs.getInt("age");
+				String first = rs.getString("first");
+				String last = rs.getString("last");
+				//Display values
+				System.out.print("ID: " + id);
+				System.out.print(", Age: " + age);
+				System.out.print(", First: " + first);
+				System.out.println(", Last: " + last);
+			}
+			// Select all records having ID equal or greater than 101
+			System.out.println("Fetching records with condition...");
+			sql = "SELECT id, first, last, age FROM Registration" +
+					" WHERE id >= 103 ";
+			rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				//Retrieve by column name
+				int id  = rs.getInt("id");
+				int age = rs.getInt("age");
+				String first = rs.getString("first");
+				String last = rs.getString("last");
+				//Display values
+				System.out.print("ID: " + id);
+				System.out.print(", Age: " + age);
+				System.out.print(", First: " + first);
+				System.out.println(", Last: " + last);
+			}
+			rs.close();
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(stmt!=null)
+					conn.close();
+			}catch(SQLException se){
+			}// do nothing
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main
+}//end JDBCExample
+```
+
+## 24 JDBC Like Clause
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class _24JDBC_LikeClause {
+
+	public static void main(String[] args) {
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to a selected database..."); 
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/STUDENTS?autoReconnect=true&useSSL=false","root","rootcm");
+			System.out.println("Connected database successfully...");
+			//STEP 4: Execute a query
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+			// Extract records without any condition. 
+			System.out.println("Fetching records without condition..."); 
+			String sql = "SELECT id, first, last, age FROM Registration"; 
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				//Retrieve by column name
+				int id  = rs.getInt("id");
+				int age = rs.getInt("age");
+				String first = rs.getString("first");
+				String last = rs.getString("last");
+				//Display values
+				System.out.print("ID: " + id); 
+				System.out.print(", Age: " + age); 
+				System.out.print(", First: " + first); 
+				System.out.println(", Last: " + last);
+			}
+			// Select all records having ID equal or greater than 101
+			System.out.println("Fetching records with condition...");
+			sql = "SELECT id, first, last, age FROM Registration" + " WHERE first LIKE '%za%' ";
+			rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				//Retrieve by column name
+				int id  = rs.getInt("id");
+				int age = rs.getInt("age");
+				String first = rs.getString("first");
+				String last = rs.getString("last");
+				//Display values
+				System.out.print("ID: " + id); 
+				System.out.print(", Age: " + age); 
+				System.out.print(", First: " + first); 
+				System.out.println(", Last: " + last);
+			}
+			rs.close();
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main
+}
+```
+
+
+## 25 JDBC Sorting Data
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class _25JDBC_SortingData {
+
+	public static void main(String[] args) {
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to a selected database...");
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/STUDENTS?autoReconnect=true&useSSL=false","root","rootcm");
+			System.out.println("Connected database successfully...");
+			//STEP 4: Execute a query
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+			// Extract records in ascending order by first name.
+			System.out.println("Fetching records in ascending order...");
+			String sql = "SELECT id, first, last, age FROM Registration" +
+					" ORDER BY first ASC";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				//Retrieve by column name
+				int id  = rs.getInt("id");
+				int age = rs.getInt("age");
+				String first = rs.getString("first");
+				String last = rs.getString("last");
+				//Display values
+				System.out.print("ID: " + id);
+				System.out.print(", Age: " + age);
+				System.out.print(", First: " + first);
+				System.out.println(", Last: " + last);
+			}
+
+
+			// Extract records in descending order by first name. 
+			System.out.println("Fetching records in descending order..."); 
+			sql = "SELECT id, first, last, age FROM Registration" +
+			" ORDER BY first DESC";
+			rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				//Retrieve by column name
+				int id  = rs.getInt("id");
+				int age = rs.getInt("age");
+				String first = rs.getString("first");
+				String last = rs.getString("last");
+				//Display values 
+				System.out.print("ID: " + id); 
+				System.out.print(", Age: " + age); 
+				System.out.print(", First: " + first); 
+				System.out.println(", Last: " + last);
+			}
+			rs.close();
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(stmt!=null)
+					conn.close();
+			}catch(SQLException se){
+			}// do nothing
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}//end main
+}//end JDBCExample
+```
