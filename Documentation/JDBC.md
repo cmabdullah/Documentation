@@ -1911,3 +1911,81 @@ public class _26JDBC_InsertDateAndTime {
 	}
 }
 ```
+
+
+
+## 27 JDBC Time Calculation And Null Value
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.Date;
+
+public class _27JDBC_TimeCalculationAndNullValue {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		Statement stmt = null;
+		Date d = new Date();
+		Date date = new Date();
+		Timestamp timestamp1 = new Timestamp(date.getTime());
+
+		int id = 3;
+		long oldTime = 1520442629272L ; //old time
+		String date1Time1 = "2018-03-07 23:10:29.272";
+		String date2Time2 = timestamp1.toString();
+		long currentTime = timestamp1.getTime();
+		int workingHour = 1;
+
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName("com.mysql.jdbc.Driver");
+			//STEP 3: Open a connection
+			System.out.println("Connecting to a selected database...");
+			conn = DriverManager.getConnection(  
+					"jdbc:mysql://localhost:3306/EMP?autoReconnect=true&useSSL=false","root","rootcm"); 
+			System.out.println("Connected database successfully...");
+			//STEP 4: Execute a query
+
+			System.out.println("Inserting records into the table..."); 
+			
+			//String sql = "insert into Time values (?,?,?,?,?,?)";
+			PreparedStatement pstmt = conn.prepareStatement("insert into Time values(?,?,?,?,?,?)");
+			//values('"+x+"','"+y+"')";
+			
+			pstmt.setInt(1, id);
+			pstmt.setString(2, date1Time1);
+			pstmt.setString(3, date2Time2);
+			pstmt.setLong(4, oldTime);
+			pstmt.setLong(5, currentTime);
+			pstmt.setNull(6, java.sql.Types.INTEGER);
+			int i = pstmt.executeUpdate();
+			System.out.println("Inserted records into the table...");
+		}catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}catch(Exception e){
+			//Handle errors for Class.forName
+			e.printStackTrace();
+		}finally{
+			//finally block used to close resources
+			try{
+				if(stmt!=null)
+					conn.close();
+			}catch(SQLException se){
+			}// do nothing
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}//end finally try
+		}//end try
+		System.out.println("Goodbye!");
+	}
+}
+```
