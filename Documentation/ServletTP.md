@@ -411,35 +411,267 @@ public class _05ReadingAllFormParameters extends HttpServlet {
 
 
 
-### 01 JDBC Show Value From Database
-
+### 06 HTTP Header Request Example
+#### _06HTTPHeaderRequestExample.java
 ```java
+package com.abdullah;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/_06HTTPHeaderRequestExample")
+public class _06HTTPHeaderRequestExample extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Set response content type 
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		String title = "HTTP Header Request Example";
+		String docType =
+		"<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
+		out.println(docType +
+		"<html>\n" +
+		"<head><title>" + title + "</title></head>\n"+
+		"<body bgcolor=\"#f0f0f0\">\n" +
+		"<h1 align=\"center\">" + title + "</h1>\n" +
+		"<table width=\"100%\" border=\"1\" align=\"center\">\n" 
+		+ "<tr bgcolor=\"#949494\">\n"
+		+ "<th>Header Name</th><th>Header Value(s)</th>\n"
+		+ "</tr>\n");
+		Enumeration headerNames = request.getHeaderNames();
+		while(headerNames.hasMoreElements()) {
+			String paramName = (String)headerNames.nextElement(); 
+			out.print("<tr><td>" + paramName + "</td>\n");
+			String paramValue = request.getHeader(paramName);
+			out.println("<td> " + paramValue + "</td></tr>\n"); 
+		}
+		out.println("</table>\n</body></html>");
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+}
 
 ```
-### 01 JDBC Show Value From Database
-
+### 07 HTTP Response Header
+#### _07HTTPResponseHeader.java
 ```java
+package com.abdullah;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+//@WebServlet("/_07HTTPResponseHeader")
+public class _07HTTPResponseHeader extends HttpServlet {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Set refresh, autoload time as 5 seconds 
+		response.setIntHeader("Refresh", 5);
+		// Set response content type 
+
+		response.setContentType("text/html");
+
+		// Get current time
+		Calendar calendar = new GregorianCalendar(); 
+		String am_pm;
+		int hour = calendar.get(Calendar.HOUR);
+		int minute = calendar.get(Calendar.MINUTE); 
+		int second = calendar.get(Calendar.SECOND); 
+		if(calendar.get(Calendar.AM_PM) == 0)
+			am_pm = "AM";
+		else
+			am_pm = "PM";
+		String CT = hour+":"+ minute +":"+ second +" "+ am_pm;
+		PrintWriter out = response.getWriter();
+		String title = "Auto Refresh Header Setting"; 
+		String docType =
+				"<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
+		out.println(docType +
+				"<html>\n" +
+				"<head><title>" + title + "</title></head>\n"+ 
+				"<body bgcolor=\"#f0f0f0\">\n" +
+				"<h1 align=\"center\">" + title + 
+				"</h1>\n" + 
+				"<p>Current Time is: " + CT + 
+				"</p>\n");
+
+	}	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+}
 ```
-### 01 JDBC Show Value From Database
-
+### 08 HTTP Status Code Example
+#### _08HTTPStatusCodeExample.java
 ```java
+package com.abdullah;
 
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+/**
+type Status report
+message Need authentication!!!
+description The client must first authenticate itself with the proxy.
+ */
+public class _08HTTPStatusCodeExample extends HttpServlet {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Set error code and reason. 
+		response.sendError(407, "Need authentication!!!" );
+	  // Method to handle POST method request.
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+}
 ```
-### 01 JDBC Show Value From Database
-
+### 09 LogFilter
+#### _09LogFilter.java
 ```java
+package com.abdullah;
 
+import java.util.Date;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
+
+//@WebServlet("/_09ServletLogFilter")
+public class _09LogFilter implements Filter {
+	public void init(FilterConfig config) throws ServletException{
+		// Get init parameter
+		String testParam = config.getInitParameter("test-param");
+		//Print the init parameter
+		System.out.println("Test Param: " + testParam); 
+	}
+
+	public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain)
+					throws java.io.IOException, ServletException {
+		// Get the IP address of client machine. 
+		String ipAddress = request.getRemoteAddr();
+		// Log the IP address and current timestamp.
+		System.out.println("IP "+ ipAddress + ", Time "
+				+ new Date().toString());
+		// Pass request back down the filter chain
+		chain.doFilter(request,response);
+	}
+	public void destroy( ){
+		/* Called before the Filter instance is removed
+	      from service by the web container*/
+	}
+}
 ```
-### 01 JDBC Show Value From Database
+#### _09LogFilter.html
 
-```java
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="cma" method="filter">
 
+<input type="submit" value="Submit" />
+</form>
+</body>
+</html>
 ```
-### 01 JDBC Show Value From Database
+#### web.xml
 
 ```java
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <servlet>
+    <servlet-name>abc</servlet-name>
+    <servlet-class>com.abdullah._02GETMethodExampleUsingURL</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>abc</servlet-name>
+    <url-pattern>/ShowCm</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>abcd</servlet-name>
+    <servlet-class>com.abdullah._03POSTMethodExampleUsingForm</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>abcd</servlet-name>
+    <url-pattern>/ShowCm3</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>abcde</servlet-name>
+    <servlet-class>com.abdullah._04PassingCheckboxDataToServletProgram</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>abcde</servlet-name>
+    <url-pattern>/ShowCm4</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>abcde5</servlet-name>
+    <servlet-class>com.abdullah._05ReadingAllFormParameters</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>abcde5</servlet-name>
+    <url-pattern>/ShowCm5</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>abcde8</servlet-name>
+    <servlet-class>com.abdullah._08HTTPStatusCodeExample</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>abcde8</servlet-name>
+    <url-pattern>/ShowCm8</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>abcde7</servlet-name>
+    <servlet-class>com.abdullah._07HTTPResponseHeader</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>abcde7</servlet-name>
+    <url-pattern>/ShowCm7</url-pattern>
+  </servlet-mapping>
+  
+<filter>
+   <filter-name>LogFilter</filter-name>
+   <filter-class>com.abdullah._09LogFilter</filter-class>
+   <init-param>
+      <param-name>test-param</param-name>
+      <param-value>Initialization Paramter</param-value>
+   </init-param>
+</filter>
 
+<filter-mapping>
+   <filter-name>LogFilter</filter-name>
+   <url-pattern>/cma</url-pattern>
+</filter-mapping>
+  
+</web-app>
 ```
 ### 01 JDBC Show Value From Database
 
