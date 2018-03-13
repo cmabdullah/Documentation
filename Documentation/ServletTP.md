@@ -368,32 +368,6 @@ public class _05ReadingAllFormParameters extends HttpServlet {
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <servlet>
-    <servlet-name>abc</servlet-name>
-    <servlet-class>com.abdullah._02GETMethodExampleUsingURL</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>abc</servlet-name>
-    <url-pattern>/ShowCm</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>abcd</servlet-name>
-    <servlet-class>com.abdullah._03POSTMethodExampleUsingForm</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>abcd</servlet-name>
-    <url-pattern>/ShowCm3</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>abcde</servlet-name>
-    <servlet-class>com.abdullah._04PassingCheckboxDataToServletProgram</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>abcde</servlet-name>
-    <url-pattern>/ShowCm4</url-pattern>
-  </servlet-mapping>
-    
    <servlet>
     <servlet-name>abcde5</servlet-name>
     <servlet-class>com.abdullah._05ReadingAllFormParameters</servlet-class>
@@ -608,54 +582,7 @@ public class _09LogFilter implements Filter {
 ```java
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <servlet>
-    <servlet-name>abc</servlet-name>
-    <servlet-class>com.abdullah._02GETMethodExampleUsingURL</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>abc</servlet-name>
-    <url-pattern>/ShowCm</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>abcd</servlet-name>
-    <servlet-class>com.abdullah._03POSTMethodExampleUsingForm</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>abcd</servlet-name>
-    <url-pattern>/ShowCm3</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>abcde</servlet-name>
-    <servlet-class>com.abdullah._04PassingCheckboxDataToServletProgram</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>abcde</servlet-name>
-    <url-pattern>/ShowCm4</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>abcde5</servlet-name>
-    <servlet-class>com.abdullah._05ReadingAllFormParameters</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>abcde5</servlet-name>
-    <url-pattern>/ShowCm5</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>abcde8</servlet-name>
-    <servlet-class>com.abdullah._08HTTPStatusCodeExample</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>abcde8</servlet-name>
-    <url-pattern>/ShowCm8</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>abcde7</servlet-name>
-    <servlet-class>com.abdullah._07HTTPResponseHeader</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>abcde7</servlet-name>
-    <url-pattern>/ShowCm7</url-pattern>
-  </servlet-mapping>
+ 
   
 <filter>
    <filter-name>LogFilter</filter-name>
@@ -673,19 +600,195 @@ public class _09LogFilter implements Filter {
   
 </web-app>
 ```
-### 01 JDBC Show Value From Database
-
+### 10 Setting Cookies With Servlet
+#### _10SettingCookiesWithServlet.java
 ```java
+package com.abdullah;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+//@WebServlet("/_10SettingCookiesWithServlet")
+public class _10SettingCookiesWithServlet extends HttpServlet {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Create cookies for first and last names.
+		Cookie firstName = new Cookie("first_name",request.getParameter("first_name"));
+		Cookie lastName = new Cookie("last_name", request.getParameter("last_name"));
+		// Set expiry date after 24 Hrs for both the cookies.
+		firstName.setMaxAge(60*60*24);
+		lastName.setMaxAge(60*60*24);
+		// Add both the cookies in the response header. 
+		response.addCookie( firstName ); 
+		response.addCookie( lastName );
+		// Set response content type 
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		String title = "Setting Cookies Example";
+		String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
+		out.println(docType +
+				"<html>\n" +
+				"<head><title>" + title + "</title></head>\n" + 
+				"<body bgcolor=\"#f0f0f0\">\n" +
+				"<h1 align=\"center\">" + title + "</h1>\n" + 
+				"<ul>\n" +
+					" <li><b>First Name</b>: " + request.getParameter("first_name") + "\n" + 
+					" <li><b>Last Name</b>: " + request.getParameter("last_name") + "\n" + 
+				"</ul>\n" +
+				"</body></html>");
+	}
+}
 ```
-### 01 JDBC Show Value From Database
 
-```java
 
+#### _10SettingCookiesWithServlet.html
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="ShowCm10" method="GET">
+		First Name: <input type="text" name="first_name"> <br />
+		Last Name: <input type="text" name="last_name" /> 
+	<input type="submit" value="Submit" />
+	</form>
+</body>
+</html>
 ```
-### 01 JDBC Show Value From Database
+
+#### web.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <servlet>
+    <servlet-name>abcde11</servlet-name>
+    <servlet-class>com.abdullah._11ReadingCookiesWithServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>abcde11</servlet-name>
+    <url-pattern>/ShowCm11</url-pattern>
+  </servlet-mapping>
+ 
+</web-app>
+```
+
+
+
+
+### 11 Reading Cookies With Servlet
+#### _11ReadingCookiesWithServlet.java
 
 ```java
+package com.abdullah;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+//@WebServlet("/_11ReadingCookiesWithServlet")
+public class _11ReadingCookiesWithServlet extends HttpServlet {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Cookie cookie = null;
+		Cookie[] cookies = null;
+		// Get an array of Cookies associated with this domain
+		cookies = request.getCookies();
+		// Set response content type 
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		String title = "Reading Cookies Example";
+		String docType =
+				"<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
+		out.println(docType +
+				"<html>\n" +
+				"<head><title>" + title + "</title></head>\n" +
+				"<body bgcolor=\"#f0f0f0\">\n" ); 
+		if( cookies != null ){
+			out.println("<h2> Found Cookies Name and Value</h2>"); 
+			for (int i = 0; i < cookies.length; i++){
+				cookie = cookies[i];
+				out.print("Name : " + cookie.getName( ) + ", ");
+				out.print("Value: " + cookie.getValue( )+" <br/>");
+			} 
+		}else{
+			out.println(
+					"<h2>No cookies founds</h2>");
+		}
+		out.println("</body>");
+		out.println("</html>");
+	}
+}
+```
+### 12 Delete Cookies With Servlet
+#### _12DeleteCookiesWithServlet.java
+```java
+package com.abdullah;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/_12DeleteCookiesWithServlet")
+public class _12DeleteCookiesWithServlet extends HttpServlet {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Cookie cookie = null;
+		Cookie[] cookies = null;
+		// Get an array of Cookies associated with this domain
+		cookies = request.getCookies();
+		// Set response content type response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		String title = "Delete Cookies Example";
+		String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
+		out.println(docType +
+				"<html>\n" +
+				"<head><title>" + title + "</title></head>\n" +
+				"<body bgcolor=\"#f0f0f0\">\n" );
+		if( cookies != null ){
+			out.println("<h2> Cookies Name and Value</h2>"); 
+			for (int i = 0; i < cookies.length; i++){
+				cookie = cookies[i];
+				if((cookie.getName( )).compareTo("first_name") == 0 ){
+					cookie.setMaxAge(0);
+					response.addCookie(cookie);
+					out.print("Deleted cookie : " +
+						cookie.getName( ) + "<br/>");
+				}
+				out.print("Name : " + cookie.getName( ) + ", "); 
+				out.print("Value: " + cookie.getValue( )+" <br/>");
+			}
+		}else{
+			out.println(
+					"<h2>No cookies founds</h2>");
+		}
+		out.println("</body>");
+		out.println("</html>");
+	}
+}
 ```
 
