@@ -1989,3 +1989,27 @@ public class _27JDBC_TimeCalculationAndNullValue {
 	}
 }
 ```
+
+## 28 JDBC Auto increment index
+```java
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Main {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		Class.forName("com.mysql.jdbc.Driver");  
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/TestCm","root","");
+		Statement stmt=con.createStatement(); 
+		//String sql = "CREATE DATABASE TestCm";
+		//String sql = "DROP DATABASE TestCm";
+		//String sql = "CREATE TABLE employee " +"(id INTEGER not NULL AUTO_INCREMENT,  first VARCHAR(255), last VARCHAR(255),  joindate INTEGER, PRIMARY KEY ( id ))";
+		String sql = "INSERT INTO employee(first, last, joindate) VALUES ('Zara', 'Ali', 18)";
+        stmt.executeUpdate(sql);
+        System.out.println("Database created successfully...");
+	}
+}
+```
