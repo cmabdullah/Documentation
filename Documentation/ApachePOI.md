@@ -672,32 +672,50 @@ mysql> show databases;
 +--------------------+
 17 rows in set (0.00 sec)
 
-mysql> use EMP
+mysql> use TestDb;
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
 
 Database changed
-
 mysql> show tables ;
-+---------------+
-| Tables_in_emp |
-+---------------+
-| CSV           |
-| Employees     |
-| Time          |
-| XML_Data      |
-+---------------+
-4 rows in set (0.00 sec)
++------------------+
+| Tables_in_testdb |
++------------------+
+| Area             |
+| Employee         |
+| Equipment        |
+| Problem          |
+| Schedule         |
+| employeeTable    |
+| login            |
++------------------+
+7 rows in set (0.00 sec)
 
-mysql>  select * from  EMP.CSV;
-+-----+--------------+------+--------+------+
-| eid | ename        | deg  | salary | dept |
-+-----+--------------+------+--------+------+
-| 201 | C m Abdullah | Phd  | 50000  | CSE  |
-| 202 | Tawhid       | Msc  | 50000  | cse  |
-+-----+--------------+------+--------+------+
+mysql> select * from  TestDb.Employee;
++------------+--------------+-----------------+--------------+---------------+-------+------+--------+
+| EmployeeId | EmployeeName | EmployeeAddress | EmployeeType | EmployeeEmail | uname | pass | AreaId |
++------------+--------------+-----------------+--------------+---------------+-------+------+--------+
+|        201 | C M Abdullah | Amtali Barguna  |            1 | cm@gmail.com  | cma   | 20   |     40 |
+|        202 | Tawhid Islam | Pabna           |            2 | tw@gmail.com  | tw    | 10   |     41 |
++------------+--------------+-----------------+--------------+---------------+-------+------+--------+
 2 rows in set (0.00 sec)
 
+mysql> describe Employee;
++-----------------+--------------+------+-----+---------+----------------+
+| Field           | Type         | Null | Key | Default | Extra          |
++-----------------+--------------+------+-----+---------+----------------+
+| EmployeeId      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| EmployeeName    | varchar(45)  | YES  |     | NULL    |                |
+| EmployeeAddress | varchar(255) | YES  |     | NULL    |                |
+| EmployeeType    | int(11)      | YES  |     | NULL    |                |
+| EmployeeEmail   | varchar(45)  | YES  |     | NULL    |                |
+| uname           | varchar(45)  | NO   |     | NULL    |                |
+| pass            | varchar(45)  | NO   |     | NULL    |                |
+| AreaId          | int(11)      | NO   | PRI | NULL    |                |
++-----------------+--------------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> 
 
 *****/
 public class _12WriteIntoExcelFromDatabase {
@@ -705,71 +723,78 @@ public class _12WriteIntoExcelFromDatabase {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException {
 		Class.forName("com.mysql.jdbc.Driver");
 		System.out.println("Connecting to database...");
-		Connection conn = DriverManager.getConnection(  "jdbc:mysql://localhost:3306/EMP?autoReconnect=true&useSSL=false","root","rootcm");
+		Connection conn = DriverManager.getConnection(  "jdbc:mysql://localhost:3306/TestDb?autoReconnect=true&useSSL=false","root","rootcm");
 		System.out.println("Creating statement...");
 		Statement stmt = conn.createStatement();
-		String sql = "SELECT eid, ename, deg, salary, dept FROM CSV";
+		String sql = "SELECT EmployeeId, EmployeeName, EmployeeAddress, EmployeeType, EmployeeEmail,uname,  pass FROM Employee";
 		ResultSet rs = stmt.executeQuery(sql);
 		// csv
+		
 		XSSFWorkbook workbook = new XSSFWorkbook(); 
 		XSSFSheet spreadsheet = workbook.createSheet("employe db");
 		XSSFRow row = spreadsheet.createRow(1);
 		XSSFCell cell;
 		cell = row.createCell(1);
-		cell.setCellValue("EMP ID");
+		cell.setCellValue("Employee Id");
 		cell = row.createCell(2);
-		cell.setCellValue("EMP NAME");
+		cell.setCellValue("Employee Name");
 		cell = row.createCell(3);
-		cell.setCellValue("DEG");
+		cell.setCellValue("Employee Address");
 		cell = row.createCell(4);
-		cell.setCellValue("SALARY");
+		cell.setCellValue("Employee Type");
 		cell = row.createCell(5);
-		cell.setCellValue("DEPT");
+		cell.setCellValue("Employee Email");
+		cell = row.createCell(6);
+		cell.setCellValue("Employee Username");
+		cell = row.createCell(7);
+		cell.setCellValue("Employee Password");
+		
+		
+		
 		int i = 2;
-
+		
 		while(rs.next()){
 			
-			int id  = rs.getInt("eid");
-			String ename = rs.getString("ename");
-			String deg = rs.getString("deg");
-			String salary = rs.getString("salary");
-			String dept = rs.getString("dept");
+			int id  = rs.getInt("EmployeeId");
+			String ename = rs.getString("EmployeeName");
+			String address = rs.getString("EmployeeAddress");
+			int etype = rs.getInt("EmployeeType");
+			String email = rs.getString("EmployeeEmail");
+			String username = rs.getString("uname");
+			String password = rs.getString("pass");
 
 			System.out.print("ID: " + id);
 			System.out.print(", Employee Name : " + ename);
-			System.out.print(", Employee Degree: " + deg);
-			System.out.println(", Employee Salary : " + salary);
-			System.out.println(", Employee Department : " + dept);
-
+			System.out.print(", Employee Degree: " + address);
+			System.out.println(", Employee Type : " + etype);
+			System.out.println(", Employee Email : " + email);
+			System.out.println(", Username : " + username);
+			System.out.println(", Password : " + password);
 			// csv
 			row = spreadsheet.createRow(i);
 			cell = row.createCell(1);
-			cell.setCellValue(rs.getInt("eid"));
+			cell.setCellValue(rs.getInt("EmployeeId"));
 			cell = row.createCell(2);
-			cell.setCellValue(rs.getString("ename"));
+			cell.setCellValue(rs.getString("EmployeeName"));
 			cell = row.createCell(3);
-			cell.setCellValue(rs.getString("deg"));
+			cell.setCellValue(rs.getString("EmployeeAddress"));
 			cell = row.createCell(4);
-			cell.setCellValue(rs.getString("salary"));
+			cell.setCellValue(rs.getString("EmployeeType"));
 			cell = row.createCell(5);
-			cell.setCellValue(rs.getString("dept"));
+			cell.setCellValue(rs.getString("EmployeeEmail"));
+			cell = row.createCell(6);
+			cell.setCellValue(rs.getString("uname"));
+			
+			cell = row.createCell(7);
+			cell.setCellValue(rs.getString("pass"));
 			i++;
 		}
 		FileOutputStream out = new FileOutputStream(new File("exceldatabase.xlsx"));
 		workbook.write(out);
 		out.close();
 		System.out.println("exceldatabase.xlsx written successfully");
+
 		System.out.println("Goodbye!");
 	}
 }
 ```
-## 
-```java
-
-```
-## 
-```java
-
-```
-
-
