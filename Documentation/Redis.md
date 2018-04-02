@@ -7,7 +7,7 @@
 ##### 753:C 02 Apr 12:20:05.461 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
 ##### 753:M 02 Apr 12:20:05.463 * Increased maximum number of open files to 10032 (it was originally set to 256).
 
-					_._                                                  
+				_._                                                  
 			_.-``__ ''-._                                             
 		_.-``    `.  `_.  ''-._           Redis 4.0.9 (00000000/0) 64 bit
 	.-`` .-```.  ```\/    _.,_ ''-._                                   
@@ -32,6 +32,10 @@
 > redis-server
 
 > Port: 6379
+
+#### Shutdown Server
+
+> redis-cli shutdown
 
 #### Check Ip Address
 
@@ -167,4 +171,141 @@
 	(integer) 24
 	127.0.0.1:6379> get num1
 	"24"
+	127.0.0.1:6379>
+
+#### Append Two String
+
+	127.0.0.1:6379> set mykey hello
+	OK
+	127.0.0.1:6379> APPEND mykey " world"
+	(integer) 11
+	127.0.0.1:6379> get mykey
+	"hello world"
+	127.0.0.1:6379>
+
+## lectur 7
+# Way of set and get hash value
+#### Hashes are map with string fields and string values hence there perfect datatype for representation of objects. redis hash can store upto 4b ilion field value paires
+
+#### Set multiple key field value pair using hmset
+
+	127.0.0.1:6379> HMSET stud1 name max age 15 class 8
+	OK
+
+#### Get value form key name
+
+	127.0.0.1:6379> HGET stud1 name
+	"max"
+
+#### Get all value form key name
+
+	127.0.0.1:6379> HGETALL stud1
+	1) "name"
+	2) "max"
+	3) "age"
+	4) "15"
+	5) "class"
+	6) "8"
+	127.0.0.1:6379>
+
+
+##### HEXISTS field inside this hash type exist or not?
+
+	127.0.0.1:6379> HEXISTS stud1 surname
+	(integer) 0
+	127.0.0.1:6379>
+
+	127.0.0.1:6379> HEXISTS stud1 name
+	(integer) 1
+	127.0.0.1:6379>
+
+##### Delete key from hash
+
+	127.0.0.1:6379> HDEL stud1 class
+	(integer) 1
+	127.0.0.1:6379> HGETALL stud1
+	1) "name"
+	2) "max"
+	3) "age"
+	4) "15"
+	127.0.0.1:6379>
+
+##### Once again set field value
+
+	127.0.0.1:6379> HMSET stud1 class 10
+	OK
+	127.0.0.1:6379> HGETALL stud1
+	1) "name"
+	2) "max"
+	3) "age"
+	4) "15"
+	5) "class"
+	6) "10"
+	127.0.0.1:6379>
+
+#### HSETNX command is used for setting field value if the field doesnot exist
+
+	127.0.0.1:6379> HSETNX stud1 name mainul
+	(integer) 0
+	127.0.0.1:6379> HSETNX stud1 surname mr
+	(integer) 1
+	127.0.0.1:6379>
+	127.0.0.1:6379> HGETALL stud1
+	1) "name"
+	2) "max"
+	3) "age"
+	4) "15"
+	5) "class"
+	6) "10"
+	7) "surname"
+	8) "mr"
+	127.0.0.1:6379>
+
+##### view onl field from hash
+
+	127.0.0.1:6379> HKEYS stud1
+	1) "name"
+	2) "age"
+	3) "class"
+	4) "surname"
+	127.0.0.1:6379>
+
+##### increment field value
+
+	127.0.0.1:6379> HINCRBY stud1 age 3
+	(integer) 18
+	127.0.0.1:6379> HGETALL stud1
+	1) "name"
+	2) "max"
+	3) "age"
+	4) "18"
+	5) "class"
+	6) "10"
+	7) "surname"
+	8) "mr"
+	127.0.0.1:6379>
+
+##### if we want to know all the values of a particular key
+
+	127.0.0.1:6379> HVALS stud1
+	1) "max"
+	2) "18"
+	3) "10"
+	4) "mr"
+	127.0.0.1:6379>
+
+#### length of hash
+
+	127.0.0.1:6379> HLEN stud1
+	(integer) 4
+	127.0.0.1:6379>
+
+#### HMGET will give you the result whatever fields you
+ 
+	127.0.0.1:6379> HMGET stud1 name
+	1) "max"
+	127.0.0.1:6379>
+	127.0.0.1:6379> HMGET stud1 name age
+	1) "max"
+	2) "18"
 	127.0.0.1:6379>
