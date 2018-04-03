@@ -48,20 +48,15 @@ username and password abdullah
 	127.0.0.1:6379> ping
 	PONG
 
-> SET key value
-This command sets the value at the specified key.
+1. SET key value, This command sets the value at the specified key.
 
-> GET key
-Gets the value of a key.
+2. GET key, Gets the value of a key.
 
-> DEL key
-This command deletes the key, if it exists.
+3. DEL key, This command deletes the key, if it exists.
 
-> FLUSHALL 
-Delete all the keys of all the existing databases, not just the currently selected one.
+4. FLUSHALL, Delete all the keys of all the existing databases, not just the currently selected one.
 
-> KEYS pattern
-Returns all keys matching pattern.
+5. KEYS pattern, Returns all keys matching pattern.
 
 #### Set Key and value
 
@@ -101,56 +96,19 @@ Returns all keys matching pattern.
 
 
 
-> SETEX key seconds value
-Sets the value with the expiry of a key
-
-
-> SETNX key value
-Sets the value of a key, only if the key does not exist
-
-
-> SETRANGE key offset value
-Overwrites the part of a string at the key starting at the specified offset
-
-
-> STRLEN key
-Gets the length of the value stored in a key
-
-
-> MSET key value [key value ...]
-Sets multiple keys to multiple values
-
-
-> MSETNX key value [key value ...]
-Sets multiple keys to multiple values, only if none of the keys exist
-
-
-> PSETEX key milliseconds value
-Sets the value and expiration in milliseconds of a key
-
-
-> INCR key
-Increments the integer value of a key by one
-
-
-> INCRBY key increment
-Increments the integer value of a key by the given amount
-
-
-> INCRBYFLOAT key increment
-Increments the float value of a key by the given amount
-
-
-> DECR key
-Decrements the integer value of a key by one
-
-
-> DECRBY key decrement
-Decrements the integer value of a key by the given number
-
-
-> APPEND key value
-Appends a value to a key
+1. SETEX key seconds value, Sets the value with the expiry of a key
+2. SETNX key value, Sets the value of a key, only if the key does not exist
+3. SETRANGE key offset value, Overwrites the part of a string at the key starting at the specified offset
+4. STRLEN key, Gets the length of the value stored in a key
+5. MSET key value [key value ...], Sets multiple keys to multiple values
+6. MSETNX key value [key value ...], Sets multiple keys to multiple values, only if none of the keys exist
+7. PSETEX key milliseconds value, Sets the value and expiration in milliseconds of a key
+8. INCR key, Increments the integer value of a key by one
+9. INCRBY key increment, Increments the integer value of a key by the given amount
+10. INCRBYFLOAT key increment, Increments the float value of a key by the given amount
+11. DECR key, Decrements the integer value of a key by one
+12. DECRBY key decrement, Decrements the integer value of a key by the given number
+13. APPEND key value, Appends a value to a key
 
 
 #### setex -> set the value expiry of the key
@@ -260,50 +218,21 @@ Appends a value to a key
 #### Way of set and get hash value
 #### Hashes are map with string fields and string values hence there perfect datatype for representation of objects. redis hash can store upto 4b ilion field value paires
 
-> HDEL key field [field ...]
-Delete one or more hash fields
-
-> HEXISTS key field
-Determine if a hash field exists
-
-> HGET key field
-Get the value of a hash field
-
-> HGETALL key
-Get all the fields and values in a hash
-
-> HINCRBY key field increment
-Increment the integer value of a hash field by the given number
-
-> HINCRBYFLOAT key field increment
-Increment the float value of a hash field by the given amount
-
-> HKEYS key
-Get all the fields in a hash
-
-> HLEN key
-Get the number of fields in a hash
-
-> HMGET key field [field ...]
-Get the values of all the given hash fields
-
-> HMSET key field value [field value ...]
-Set multiple hash fields to multiple values
-
-> HSET key field value
-Set the string value of a hash field
-
-> HSETNX key field value
-Set the value of a hash field, only if the field does not exist
-
-> HSTRLEN key field
-Get the length of the value of a hash field
-
-> HVALS key
-Get all the values in a hash
-
-> HSCAN key cursor [MATCH pattern] [COUNT count]
-Incrementally iterate hash fields and associated values
+1. HDEL key field [field ...], Delete one or more hash fields
+2. HEXISTS key field, Determine if a hash field exists
+3. HGET key field, Get the value of a hash field
+4. HGETALL key, Get all the fields and values in a hash
+5. HINCRBY key field increment, Increment the integer value of a hash field by the given number
+6. HINCRBYFLOAT key field increment, Increment the float value of a hash field by the given amount
+7. HKEYS key, Get all the fields in a hash
+8. HLEN key, Get the number of fields in a hash
+9. HMGET key field [field ...], Get the values of all the given hash fields
+10. HMSET key field value [field value ...], Set multiple hash fields to multiple values
+11. HSET key field value, Set the string value of a hash field
+12. HSETNX key field value, Set the value of a hash field, only if the field does not exist
+13. HSTRLEN key field, Get the length of the value of a hash field
+14. HVALS key,Get all the values in a hash
+15. HSCAN key cursor [MATCH pattern] [COUNT count], Incrementally iterate hash fields and associated values
 
 
 
@@ -440,55 +369,23 @@ Incrementally iterate hash fields and associated values
 ###### lpush means we want to push into the head
 
 
-> BLPOP key [key ...] timeout
-Remove and get the first element in a list, or block until one is available
-
-> BRPOP key [key ...] timeout
-Remove and get the last element in a list, or block until one is available
-
-> BRPOPLPUSH source destination timeout
-Pop a value from a list, push it to another list and return it; or block until one is available
-
-> LINDEX key index
-Get an element from a list by its index
-
-> LINSERT key BEFORE|AFTER pivot value
-Insert an element before or after another element in a list
-
-> LLEN key
-Get the length of a list
-
-> LPOP key
-Remove and get the first element in a list
-
-> LPUSH key value [value ...]
-Prepend one or multiple values to a list
-
-> LPUSHX key value
-Prepend a value to a list, only if the list exists
-
-> LRANGE key start stop
-Get a range of elements from a list
-
-> LREM key count value
-Remove elements from a list
-
-> LSET key index value
-Set the value of an element in a list by its index
-
-> LTRIM key start stop
-Trim a list to the specified range
-
-> RPOP key
-Remove and get the last element in a list
-
-> RPOPLPUSH source destination
-Remove the last element in a list, prepend it to another list and return it
-RPUSH key value [value ...]
-Append one or multiple values to a list
-
-> RPUSHX key value
-Append a value to a list, only if the list exists
+1. BLPOP key [key ...] timeout, Remove and get the first element in a list, or block until one is available
+2. BRPOP key [key ...] timeout, Remove and get the last element in a list, or block until one is available
+3. BRPOPLPUSH source destination timeout, Pop a value from a list, push it to another list and return it; or block until one is available
+4. LINDEX key index, Get an element from a list by its index
+5. LINSERT key BEFORE|AFTER pivot value, Insert an element before or after another element in a list
+5. LLEN key, Get the length of a list
+6. LPOP key, Remove and get the first element in a list
+7. LPUSH key value [value ...], Prepend one or multiple values to a list
+8. LPUSHX key value, Prepend a value to a list, only if the list exists
+9. LRANGE key start stop, Get a range of elements from a list
+10. LREM key count value, Remove elements from a list
+11. LSET key index value, Set the value of an element in a list by its index
+12. LTRIM key start stop, Trim a list to the specified range
+14. RPOP key, Remove and get the last element in a list
+15. RPOPLPUSH source destination, Remove the last element in a list, prepend it to another list and return it
+16. RPUSH key value [value ...],Append one or multiple values to a list
+17. RPUSHX key value, Append a value to a list, only if the list exists
 
 
 #### redis-cli monitor command will monitor all the command which you are exicuting from cli
@@ -645,50 +542,21 @@ Append a value to a list, only if the list exists
 
 ##### where all values are uniq, no repetation allow here unoredered set
 
-> SADD key member [member ...]
-Add one or more members to a set
-
-> SCARD key
-Get the number of members in a set
-
-> SDIFF key [key ...]
-Subtract multiple sets
-
-> SDIFFSTORE destination key [key ...]
-Subtract multiple sets and store the resulting set in a key
-
-> SINTER key [key ...]
-Intersect multiple sets
-
-> SINTERSTORE destination key [key ...]
-Intersect multiple sets and store the resulting set in a key
-
-> SISMEMBER key member
-Determine if a given value is a member of a set
-
-> SMEMBERS key
-Get all the members in a set
-
-> SMOVE source destination member
-Move a member from one set to another
-
-> SPOP key [count]
-Remove and return one or multiple random members from a set
-
-> SRANDMEMBER key [count]
-Get one or multiple random members from a set
-
-> SREM key member [member ...]
-Remove one or more members from a set
-
-> SUNION key [key ...]
-Add multiple sets
-
-> SUNIONSTORE destination key [key ...]
-Add multiple sets and store the resulting set in a key
-
-> SSCAN key cursor [MATCH pattern] [COUNT count]
-Incrementally iterate Set elements
+1. SADD key member [member ...], Add one or more members to a set
+2. SCARD key, Get the number of members in a set
+3. SDIFF key [key ...], Subtract multiple sets
+4. SDIFFSTORE destination key [key ...], Subtract multiple sets and store the resulting set in a key
+5. SINTER key [key ...], Intersect multiple sets
+6. SINTERSTORE destination key [key ...], Intersect multiple sets and store the resulting set in a key
+7. SISMEMBER key member, Determine if a given value is a member of a set
+8. SMEMBERS key, Get all the members in a set
+9. SMOVE source destination member, Move a member from one set to another
+10. SPOP key [count], Remove and return one or multiple random members from a set
+11. SRANDMEMBER key [count], Get one or multiple random members from a set
+12. SREM key member [member ...], Remove one or more members from a set
+13. SUNION key [key ...], Add multiple sets
+14. SUNIONSTORE destination key [key ...], Add multiple sets and store the resulting set in a key
+15. SSCAN key cursor [MATCH pattern] [COUNT count], Incrementally iterate Set elements
 
 #### add into set
 
@@ -986,5 +854,129 @@ Incrementally iterate Set elements
 	10) "30"
 	127.0.0.1:6379>
 
+# redis sorted set
+
+1. ZREVRANGEBYLEX key max min [LIMIT offset count], Return a range of members in a sorted set, by lexicographical range, ordered from higher to lower strings.
+2. ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count], Return a range of members in a sorted set, by score
+3. ZRANK key member, Determine the index of a member in a sorted set
+4. ZREM key member [member ...], Remove one or more members from a sorted set
+5. ZREMRANGEBYLEX key min max, Remove all members in a sorted set between the given lexicographical range
+6. ZREMRANGEBYRANK key start stop, Remove all members in a sorted set within the given indexes
+7. ZREMRANGEBYSCORE key min max, Remove all members in a sorted set within the given scores
+8. ZREVRANGE key start stop [WITHSCORES], Return a range of members in a sorted set, by index, with scores ordered from high to low
+9. ZREVRANGEBYSCORE key max min [WITHSCORES] [LIMIT offset count], Return a range of members in a sorted set, by score, with scores ordered from high to low
+10. ZREVRANK key member, Determine the index of a member in a sorted set, with scores ordered from high to low
+11. ZSCORE key member, Get the score associated with the given member in a sorted set
+12. ZUNIONSTORE destination numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE SUM|MIN|MAX], Add multiple sorted sets and store the resulting sorted set in a new key
+13. ZSCAN key cursor [MATCH pattern] [COUNT count], Incrementally iterate sorted sets elements and associated scores
 
 
+#### zadd is create a set if it doesnot exist or add a member to this this set if it already exist score and value associated with score
+
+	127.0.0.1:6379> ZADD myset1 1 a 2 b 3 c 5 d
+	(integer) 4
+	127.0.0.1:6379> ZRANGE myset1
+	(error) ERR wrong number of arguments for 'zrange' command
+	127.0.0.1:6379> ZRANGE myset1 0 -1
+	1) "a"
+	2) "b"
+	3) "c"
+	4) "d"
+	127.0.0.1:6379>
+
+
+
+#### howmany member in our set?
+
+	127.0.0.1:6379> ZCARD myset1
+	(integer) 5
+	127.0.0.1:6379>
+
+#### Count the key value range
+
+	127.0.0.1:6379> ZCOUNT myset1 1 3
+	(integer) 3
+	127.0.0.1:6379> ZCOUNT myset1 1 5
+	(integer) 4
+	127.0.0.1:6379> ZCOUNT myset1 1 50
+	(integer) 4
+	127.0.0.1:6379> ZCOUNT myset1 1 100
+	(integer) 5
+	127.0.0.1:6379> ZCOUNT myset1 1 99
+	(integer) 4
+	127.0.0.1:6379>
+
+#### to remove a number from a set 
+
+	127.0.0.1:6379> ZREM myset1 b
+	(integer) 1
+	127.0.0.1:6379> ZRANGE myset1 0 -1
+	1) "a"
+	2) "c"
+	3) "d"
+	4) "e"
+	127.0.0.1:6379>
+
+#### show the index of specific value
+
+	127.0.0.1:6379> ZRANGE myset1 0 -1
+	1) "a"
+	2) "c"
+	3) "d"
+	4) "e"
+	127.0.0.1:6379> ZRANK myset1 e
+	(integer) 3
+	127.0.0.1:6379>
+
+#### rank is sorted based on score, show the reverse rank.
+
+	127.0.0.1:6379> ZREVRANK myset1 e
+	(integer) 0
+	127.0.0.1:6379>
+
+
+#### show the scorevalue of a member
+
+	127.0.0.1:6379> ZSCORE myset1 e
+	"100"
+	127.0.0.1:6379>
+
+#### Same score has multiple value
+
+	127.0.0.1:6379> ZRANGE myset1 0 -1
+	1) "a"
+	2) "c"
+	3) "d"
+	4) "e"
+	127.0.0.1:6379> ZADD myset1 1 aaaa
+	(integer) 1
+	127.0.0.1:6379> ZRANGE myset1 0 -1
+	1) "a"
+	2) "aaaa"
+	3) "c"
+	4) "d"
+	5) "e"
+	127.0.0.1:6379> ZSCORE myset1 a
+	"1"
+	127.0.0.1:6379> ZSCORE myset1 aaaa
+	"1"
+	127.0.0.1:6379> ZADD myset1 1 bbbb
+	(integer) 1
+	127.0.0.1:6379> ZRANGE myset1 0 -1
+	1) "a"
+	2) "aaaa"
+	3) "bbbb"
+	4) "c"
+	5) "d"
+	6) "e"
+	127.0.0.1:6379> ZSCORE myset1 bbbb
+	"1"
+	127.0.0.1:6379>
+
+#### ZRANGEBYSCORE
+
+	127.0.0.1:6379> ZRANGEBYSCORE myset1 1 2
+	1) "a"
+	2) "aaaa"
+	3) "bbbb"
+	127.0.0.1:6379>
