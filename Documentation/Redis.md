@@ -27,6 +27,8 @@
 
 
 
+username and password abdullah
+
 #### Open Server
 
 > redis-server
@@ -309,3 +311,164 @@
 	1) "max"
 	2) "18"
 	127.0.0.1:6379>
+
+
+# Redis list lectur 8
+
+
+Redislist is simply list of string sorted by their insertion order
+
+elements can be inserted from the tom or from bottom
+
+lpush means we want to push into the head
+
+#### redis-cli monitor command will monitor all the command which you are exicuting from cli
+
+#### Push value into list
+
+	127.0.0.1:6379> LPUSH  num 1 2 3 4
+	(integer) 4
+	127.0.0.1:6379> LRANGE num 0 10
+	1) "4"
+	2) "3"
+	3) "2"
+	4) "1"
+	127.0.0.1:6379>
+
+##### Push new value on the top 
+
+	127.0.0.1:6379> LPUSH  num 5
+	(integer) 5
+	127.0.0.1:6379> LRANGE num 0 10
+	1) "5"
+	2) "4"
+	3) "3"
+	4) "2"
+	5) "1"
+	127.0.0.1:6379>
+
+#### lpop command pop value from the top
+
+	127.0.0.1:6379> LPOP num
+	"5"
+	127.0.0.1:6379> LRANGE num 0 10
+	1) "4"
+	2) "3"
+	3) "2"
+	4) "1"
+	127.0.0.1:6379>
+
+#### push from the bottom using LRANGE command
+
+	127.0.0.1:6379> RPUSH num 6
+	(integer) 5
+	127.0.0.1:6379> LRANGE num 0 10
+	1) "4"
+	2) "3"
+	3) "2"
+	4) "1"
+	5) "6"
+	127.0.0.1:6379>
+
+#### rpom will pop from the bottom
+
+	127.0.0.1:6379> RPOP num
+	"6"
+	127.0.0.1:6379> LRANGE num 0 10
+	1) "4"
+	2) "3"
+	3) "2"
+	4) "1"
+	127.0.0.1:6379>
+
+#### llen is the length of the list
+
+	127.0.0.1:6379> LLEN num
+	(integer) 5
+	127.0.0.1:6379> LRANGE num 0 10
+	1) "4"
+	2) "3"
+	3) "2"
+	4) "1"
+	5) "6"
+	127.0.0.1:6379>
+
+##### get value from specific index using lindex
+
+	127.0.0.1:6379> LRANGE num 0 10
+	1) "4"
+	2) "3"
+	3) "2"
+	4) "1"
+	5) "6"
+	127.0.0.1:6379> LINDEX num 4
+	"6"
+	127.0.0.1:6379>
+
+#### insert value int middle
+
+	127.0.0.1:6379> LSET num  2 8
+	OK
+	127.0.0.1:6379> LRANGE num 0 10
+	1) "4"
+	2) "3"
+	3) "8"
+	4) "1"
+	5) "6"
+	127.0.0.1:6379>
+
+#### show all the elements in the list 
+
+	127.0.0.1:6379> LRANGE num 0 -1
+	1) "4"
+	2) "3"
+	3) "8"
+	4) "1"
+	5) "6"
+	127.0.0.1:6379>
+
+#### LPUSHX if key exist then this command is successful
+
+	127.0.0.1:6379> LPUSHX num 7
+	(integer) 6
+	127.0.0.1:6379> LRANGE num 0 -1
+	1) "7"
+	2) "4"
+	3) "3"
+	4) "8"
+	5) "1"
+	6) "6"
+	127.0.0.1:6379>
+	127.0.0.1:6379> LPUSHX sub 1 2 3 4 5
+	(integer) 0
+	127.0.0.1:6379>
+
+#### push value before specific value
+
+	127.0.0.1:6379> LINSERT num before 1 251
+	(integer) 7
+	127.0.0.1:6379> LRANGE num 0 -1
+	1) "7"
+	2) "4"
+	3) "3"
+	4) "8"
+	5) "251"
+	6) "1"
+	7) "6"
+	127.0.0.1:6379>
+
+#### push value after specific value
+
+	127.0.0.1:6379> LINSERT num after 3 2018
+	(integer) 8
+	127.0.0.1:6379> LRANGE num 0 -1
+	1) "7"
+	2) "4"
+	3) "3"
+	4) "2018"
+	5) "8"
+	6) "251"
+	7) "1"
+	8) "6"
+	127.0.0.1:6379>
+
