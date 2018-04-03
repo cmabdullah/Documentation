@@ -48,6 +48,21 @@ username and password abdullah
 	127.0.0.1:6379> ping
 	PONG
 
+> SET key value
+This command sets the value at the specified key.
+
+> GET key
+Gets the value of a key.
+
+> DEL key
+This command deletes the key, if it exists.
+
+> FLUSHALL 
+Delete all the keys of all the existing databases, not just the currently selected one.
+
+> KEYS pattern
+Returns all keys matching pattern.
+
 #### Set Key and value
 
 	127.0.0.1:6379> set name maximum
@@ -82,6 +97,62 @@ username and password abdullah
 	127.0.0.1:6379> 
 
 
+
+
+
+
+> SETEX key seconds value
+Sets the value with the expiry of a key
+
+
+> SETNX key value
+Sets the value of a key, only if the key does not exist
+
+
+> SETRANGE key offset value
+Overwrites the part of a string at the key starting at the specified offset
+
+
+> STRLEN key
+Gets the length of the value stored in a key
+
+
+> MSET key value [key value ...]
+Sets multiple keys to multiple values
+
+
+> MSETNX key value [key value ...]
+Sets multiple keys to multiple values, only if none of the keys exist
+
+
+> PSETEX key milliseconds value
+Sets the value and expiration in milliseconds of a key
+
+
+> INCR key
+Increments the integer value of a key by one
+
+
+> INCRBY key increment
+Increments the integer value of a key by the given amount
+
+
+> INCRBYFLOAT key increment
+Increments the float value of a key by the given amount
+
+
+> DECR key
+Decrements the integer value of a key by one
+
+
+> DECRBY key decrement
+Decrements the integer value of a key by the given number
+
+
+> APPEND key value
+Appends a value to a key
+
+
 #### setex -> set the value expiry of the key
 
 	127.0.0.1:6379> SETEX name2 20 khan
@@ -94,7 +165,7 @@ username and password abdullah
 
 	127.0.0.1:6379> ttl name2
 	(integer) 2
-
+	127.0.0.1:6379>
 
 #### SETNX protect to override data
 	127.0.0.1:6379> SETNX name2 khan
@@ -185,9 +256,57 @@ username and password abdullah
 	"hello world"
 	127.0.0.1:6379>
 
-## lectur 7
-# Way of set and get hash value
+# Redis Hash
+#### Way of set and get hash value
 #### Hashes are map with string fields and string values hence there perfect datatype for representation of objects. redis hash can store upto 4b ilion field value paires
+
+> HDEL key field [field ...]
+Delete one or more hash fields
+
+> HEXISTS key field
+Determine if a hash field exists
+
+> HGET key field
+Get the value of a hash field
+
+> HGETALL key
+Get all the fields and values in a hash
+
+> HINCRBY key field increment
+Increment the integer value of a hash field by the given number
+
+> HINCRBYFLOAT key field increment
+Increment the float value of a hash field by the given amount
+
+> HKEYS key
+Get all the fields in a hash
+
+> HLEN key
+Get the number of fields in a hash
+
+> HMGET key field [field ...]
+Get the values of all the given hash fields
+
+> HMSET key field value [field value ...]
+Set multiple hash fields to multiple values
+
+> HSET key field value
+Set the string value of a hash field
+
+> HSETNX key field value
+Set the value of a hash field, only if the field does not exist
+
+> HSTRLEN key field
+Get the length of the value of a hash field
+
+> HVALS key
+Get all the values in a hash
+
+> HSCAN key cursor [MATCH pattern] [COUNT count]
+Incrementally iterate hash fields and associated values
+
+
+
 
 #### Set multiple key field value pair using hmset
 
@@ -313,14 +432,64 @@ username and password abdullah
 	127.0.0.1:6379>
 
 
-# Redis list lectur 8
+# Redis list
 
 
-Redislist is simply list of string sorted by their insertion order
+#### Redislist is simply list of string sorted by their insertion order elements can be inserted from the tom or from bottom
 
-elements can be inserted from the tom or from bottom
+###### lpush means we want to push into the head
 
-lpush means we want to push into the head
+
+> BLPOP key [key ...] timeout
+Remove and get the first element in a list, or block until one is available
+
+> BRPOP key [key ...] timeout
+Remove and get the last element in a list, or block until one is available
+
+> BRPOPLPUSH source destination timeout
+Pop a value from a list, push it to another list and return it; or block until one is available
+
+> LINDEX key index
+Get an element from a list by its index
+
+> LINSERT key BEFORE|AFTER pivot value
+Insert an element before or after another element in a list
+
+> LLEN key
+Get the length of a list
+
+> LPOP key
+Remove and get the first element in a list
+
+> LPUSH key value [value ...]
+Prepend one or multiple values to a list
+
+> LPUSHX key value
+Prepend a value to a list, only if the list exists
+
+> LRANGE key start stop
+Get a range of elements from a list
+
+> LREM key count value
+Remove elements from a list
+
+> LSET key index value
+Set the value of an element in a list by its index
+
+> LTRIM key start stop
+Trim a list to the specified range
+
+> RPOP key
+Remove and get the last element in a list
+
+> RPOPLPUSH source destination
+Remove the last element in a list, prepend it to another list and return it
+RPUSH key value [value ...]
+Append one or multiple values to a list
+
+> RPUSHX key value
+Append a value to a list, only if the list exists
+
 
 #### redis-cli monitor command will monitor all the command which you are exicuting from cli
 
@@ -471,4 +640,351 @@ lpush means we want to push into the head
 	7) "1"
 	8) "6"
 	127.0.0.1:6379>
+
+# Redis sets
+
+##### where all values are uniq, no repetation allow here unoredered set
+
+> SADD key member [member ...]
+Add one or more members to a set
+
+> SCARD key
+Get the number of members in a set
+
+> SDIFF key [key ...]
+Subtract multiple sets
+
+> SDIFFSTORE destination key [key ...]
+Subtract multiple sets and store the resulting set in a key
+
+> SINTER key [key ...]
+Intersect multiple sets
+
+> SINTERSTORE destination key [key ...]
+Intersect multiple sets and store the resulting set in a key
+
+> SISMEMBER key member
+Determine if a given value is a member of a set
+
+> SMEMBERS key
+Get all the members in a set
+
+> SMOVE source destination member
+Move a member from one set to another
+
+> SPOP key [count]
+Remove and return one or multiple random members from a set
+
+> SRANDMEMBER key [count]
+Get one or multiple random members from a set
+
+> SREM key member [member ...]
+Remove one or more members from a set
+
+> SUNION key [key ...]
+Add multiple sets
+
+> SUNIONSTORE destination key [key ...]
+Add multiple sets and store the resulting set in a key
+
+> SSCAN key cursor [MATCH pattern] [COUNT count]
+Incrementally iterate Set elements
+
+#### add into set
+
+	127.0.0.1:6379> SADD myset1 1 2 3 4
+	(integer) 4
+	127.0.0.1:6379> SMEMBERS myset1
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "4"
+	127.0.0.1:6379> SADD myset1 3 // set does not support any duplicate key 
+	(integer) 0
+	127.0.0.1:6379> SMEMBERS myset1
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "4"
+	127.0.0.1:6379>
+
+#### when we are trying to add new member int set that time set is cool :D
+
+	127.0.0.1:6379> SADD myset1 5
+	(integer) 1
+	127.0.0.1:6379> SMEMBERS myset1
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "4"
+	5) "5"
+	127.0.0.1:6379>
+
+#### how many members in the set
+
+	127.0.0.1:6379> SCARD myset1
+	(integer) 5
+	127.0.0.1:6379>
+
+#### added new set 
+
+	127.0.0.1:6379> SADD myset2 10 20 30 11 15
+	(integer) 5
+	127.0.0.1:6379> SADD myset2 13
+	(integer) 1
+	127.0.0.1:6379> SCARD myset1
+	(integer) 5
+	127.0.0.1:6379> SMEMBERS myset2
+	1) "10"
+	2) "11"
+	3) "13"
+	4) "15"
+	5) "20"
+	6) "30"
+	127.0.0.1:6379> scard myset2
+	(integer) 6
+	127.0.0.1:6379>
+
+#### substruct set from one set to another set i.e check the difference
+
+	127.0.0.1:6379> SMEMBERS myset1
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "4"
+	5) "5"
+	127.0.0.1:6379> SMEMBERS myset2
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "10"
+	5) "11"
+	6) "13"
+	7) "15"
+	8) "20"
+	9) "30"
+	127.0.0.1:6379> SDIFF myset1 myset2
+	1) "4"
+	2) "5"
+	127.0.0.1:6379> SDIFF myset2 myset1
+	1) "10"
+	2) "11"
+	3) "13"
+	4) "15"
+	5) "20"
+	6) "30"
+	127.0.0.1:6379>
+
+#### if i want to know the sdiff and save it in the third seample than
+
+	127.0.0.1:6379> SMEMBERS myset1
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "4"
+	5) "5"
+	127.0.0.1:6379> SMEMBERS myset2
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "10"
+	5) "11"
+	6) "13"
+	7) "15"
+	8) "20"
+	9) "30"
+	127.0.0.1:6379> SDIFF myset1 myset2
+	1) "4"
+	2) "5"
+	127.0.0.1:6379> SDIFF myset2 myset1
+	1) "10"
+	2) "11"
+	3) "13"
+	4) "15"
+	5) "20"
+	6) "30"
+	127.0.0.1:6379> SDIFFSTORE myset3 myset1 myset2
+	(integer) 2
+	127.0.0.1:6379> SMEMBERS myset3
+	1) "4"
+	2) "5"
+	127.0.0.1:6379>
+
+#### union two set 
+
+	127.0.0.1:6379> SUNION myset1 myset2
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "4"
+	5) "5"
+	6) "10"
+	7) "11"
+	8) "13"
+	9) "15"
+	10) "20"
+	11) "30"
+
+
+#### store unio value into another set
+
+	127.0.0.1:6379> SUNIONSTORE myset4 myset1 myset2
+	(integer) 11
+	127.0.0.1:6379> SMEMBERS myset4
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "4"
+	5) "5"
+	6) "10"
+	7) "11"
+	8) "13"
+	9) "15"
+	10) "20"
+	11) "30"
+	127.0.0.1:6379>
+
+#### remove member from the set
+
+	127.0.0.1:6379> SMEMBERS myset4
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "4"
+	5) "5"
+	6) "10"
+	7) "11"
+	8) "13"
+	9) "15"
+	10) "20"
+	11) "30"
+	127.0.0.1:6379> ser
+	(error) ERR unknown command 'ser'
+	127.0.0.1:6379>
+	127.0.0.1:6379> SREM myset4 15
+	(integer) 1
+	127.0.0.1:6379> SMEMBERS myset4
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "4"
+	5) "5"
+	6) "10"
+	7) "11"
+	8) "13"
+	9) "20"
+	10) "30"
+	127.0.0.1:6379>
+
+#### remove random value from set
+
+	127.0.0.1:6379> SMEMBERS myset4
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "4"
+	5) "5"
+	6) "10"
+	7) "11"
+	8) "13"
+	9) "20"
+	10) "30"
+	127.0.0.1:6379> SPOP myset4 1
+	1) "5"
+	127.0.0.1:6379>
+	127.0.0.1:6379> SMEMBERS myset4
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "4"
+	5) "10"
+	6) "11"
+	7) "13"
+	8) "20"
+	9) "30"
+	127.0.0.1:6379>
+	127.0.0.1:6379> SPOP myset4 3
+	1) "10"
+	2) "30"
+	3) "1"
+	127.0.0.1:6379> SMEMBERS myset4
+	1) "2"
+	2) "3"
+	3) "4"
+	4) "11"
+	5) "13"
+	6) "20"
+	127.0.0.1:6379>	
+
+#### intersection between two sets
+	127.0.0.1:6379> SMEMBERS myset1
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "4"
+	5) "5"
+	127.0.0.1:6379> SMEMBERS myset2
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "10"
+	5) "11"
+	6) "13"
+	7) "15"
+	8) "20"
+	9) "30"
+	127.0.0.1:6379> SINTER myset1 myset2
+	1) "1"
+	2) "2"
+	3) "3"
+	127.0.0.1:6379>
+
+#### intersection value store in another set
+
+	127.0.0.1:6379> SINTER myset1 myset2
+	1) "1"
+	2) "2"
+	3) "3"
+	127.0.0.1:6379> SINTERSTORE myset5 myset1 myset2
+	(integer) 3
+	127.0.0.1:6379> SMEMBERS myset5
+	1) "1"
+	2) "2"
+	3) "3"
+	127.0.0.1:6379>
+
+#### smove command is used to move value from one set to another set
+
+	127.0.0.1:6379> SMEMBERS myset1
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "4"
+	5) "5"
+	127.0.0.1:6379> SMEMBERS myset2
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "10"
+	5) "11"
+	6) "13"
+	7) "15"
+	8) "20"
+	9) "30"
+	127.0.0.1:6379> SMOVE myset1 myset2 5
+	(integer) 1
+	127.0.0.1:6379> SMEMBERS myset2
+	1) "1"
+	2) "2"
+	3) "3"
+	4) "5"
+	5) "10"
+	6) "11"
+	7) "13"
+	8) "15"
+	9) "20"
+	10) "30"
+	127.0.0.1:6379>
+
+
 
