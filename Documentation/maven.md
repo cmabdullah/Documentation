@@ -1058,7 +1058,7 @@
 ### Profile Activation
 
 ### Profile Activation Examples
-### Profile Activation via Maven Settings page 38
+### Profile Activation via Environment Variables page 38
 
 > mvn test
 
@@ -1088,485 +1088,57 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>test</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>test</value>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
+
+
 </project>
+
 ```
 
 #### Result
 
-
-	➜  nazmul git:(master) ✗ mvn test
+	➜  nazmul git:(master) ✗ mvn test 
 	[INFO] Scanning for projects...
-	[INFO]
+	[INFO] 
 	[INFO] ------------------------< com.abdullah:nazmul >-------------------------
 	[INFO] Building nazmul 0.0.1-SNAPSHOT
 	[INFO] --------------------------------[ jar ]---------------------------------
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-resources-plugin/2.6/maven-resources-plugin-2.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-resources-plugin/2.6/maven-resources-plugin-2.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-plugins/23/maven-plugins-23.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-plugins/23/maven-plugins-23.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-parent/22/maven-parent-22.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-parent/22/maven-parent-22.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/11/apache-11.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/11/apache-11.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-resources-plugin/2.6/maven-resources-plugin-2.6.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-resources-plugin/2.6/maven-resources-plugin-2.6.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/3.1/maven-compiler-plugin-3.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/3.1/maven-compiler-plugin-3.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-plugins/24/maven-plugins-24.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-plugins/24/maven-plugins-24.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-parent/23/maven-parent-23.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-parent/23/maven-parent-23.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/13/apache-13.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/13/apache-13.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/3.1/maven-compiler-plugin-3.1.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/3.1/maven-compiler-plugin-3.1.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/2.12.4/maven-surefire-plugin-2.12.4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/2.12.4/maven-surefire-plugin-2.12.4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire/2.12.4/surefire-2.12.4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire/2.12.4/surefire-2.12.4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/2.12.4/maven-surefire-plugin-2.12.4.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/2.12.4/maven-surefire-plugin-2.12.4.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/junit/junit/3.8.1/junit-3.8.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/junit/junit/3.8.1/junit-3.8.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/junit/junit/3.8.1/junit-3.8.1.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/junit/junit/3.8.1/junit-3.8.1.jar (0 B at 0 B/s)
-	[INFO]
+	[INFO] 
 	[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ nazmul ---
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven/2.0.6/maven-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven/2.0.6/maven-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-parent/5/maven-parent-5.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-parent/5/maven-parent-5.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/3/apache-3.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/3/apache-3.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-project/2.0.6/maven-project-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-project/2.0.6/maven-project-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-settings/2.0.6/maven-settings-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-settings/2.0.6/maven-settings-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-model/2.0.6/maven-model-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-model/2.0.6/maven-model-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.4.1/plexus-utils-1.4.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.4.1/plexus-utils-1.4.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/1.0.11/plexus-1.0.11.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/1.0.11/plexus-1.0.11.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-containers/1.0.3/plexus-containers-1.0.3.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-containers/1.0.3/plexus-containers-1.0.3.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/1.0.4/plexus-1.0.4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/1.0.4/plexus-1.0.4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.0.4/plexus-utils-1.0.4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.0.4/plexus-utils-1.0.4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-profile/2.0.6/maven-profile-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-profile/2.0.6/maven-profile-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact-manager/2.0.6/maven-artifact-manager-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact-manager/2.0.6/maven-artifact-manager-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-repository-metadata/2.0.6/maven-repository-metadata-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-repository-metadata/2.0.6/maven-repository-metadata-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact/2.0.6/maven-artifact-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact/2.0.6/maven-artifact-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-registry/2.0.6/maven-plugin-registry-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-registry/2.0.6/maven-plugin-registry-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-core/2.0.6/maven-core-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-core/2.0.6/maven-core-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-parameter-documenter/2.0.6/maven-plugin-parameter-documenter-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-parameter-documenter/2.0.6/maven-plugin-parameter-documenter-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/reporting/maven-reporting-api/2.0.6/maven-reporting-api-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/reporting/maven-reporting-api/2.0.6/maven-reporting-api-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/reporting/maven-reporting/2.0.6/maven-reporting-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/reporting/maven-reporting/2.0.6/maven-reporting-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/doxia/doxia-sink-api/1.0-alpha-7/doxia-sink-api-1.0-alpha-7.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/doxia/doxia-sink-api/1.0-alpha-7/doxia-sink-api-1.0-alpha-7.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/doxia/doxia/1.0-alpha-7/doxia-1.0-alpha-7.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/doxia/doxia/1.0-alpha-7/doxia-1.0-alpha-7.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-error-diagnostics/2.0.6/maven-error-diagnostics-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-error-diagnostics/2.0.6/maven-error-diagnostics-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/commons-cli/commons-cli/1.0/commons-cli-1.0.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/commons-cli/commons-cli/1.0/commons-cli-1.0.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-descriptor/2.0.6/maven-plugin-descriptor-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-descriptor/2.0.6/maven-plugin-descriptor-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interactivity-api/1.0-alpha-4/plexus-interactivity-api-1.0-alpha-4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interactivity-api/1.0-alpha-4/plexus-interactivity-api-1.0-alpha-4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-monitor/2.0.6/maven-monitor-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-monitor/2.0.6/maven-monitor-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/classworlds/classworlds/1.1/classworlds-1.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/classworlds/classworlds/1.1/classworlds-1.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/2.0.5/plexus-utils-2.0.5.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/2.0.5/plexus-utils-2.0.5.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/2.0.6/plexus-2.0.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/2.0.6/plexus-2.0.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-filtering/1.1/maven-filtering-1.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-filtering/1.1/maven-filtering-1.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-components/17/maven-shared-components-17.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-components/17/maven-shared-components-17.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-parent/21/maven-parent-21.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-parent/21/maven-parent-21.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/10/apache-10.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/10/apache-10.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.5.15/plexus-utils-1.5.15.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.5.15/plexus-utils-1.5.15.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/2.0.2/plexus-2.0.2.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/2.0.2/plexus-2.0.2.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interpolation/1.12/plexus-interpolation-1.12.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interpolation/1.12/plexus-interpolation-1.12.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-components/1.1.14/plexus-components-1.1.14.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-components/1.1.14/plexus-components-1.1.14.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/plexus/plexus-build-api/0.0.4/plexus-build-api-0.0.4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/plexus/plexus-build-api/0.0.4/plexus-build-api-0.0.4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/spice/spice-parent/10/spice-parent-10.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/spice/spice-parent/10/spice-parent-10.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/forge/forge-parent/3/forge-parent-3.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/forge/forge-parent/3/forge-parent-3.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.5.8/plexus-utils-1.5.8.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.5.8/plexus-utils-1.5.8.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interpolation/1.13/plexus-interpolation-1.13.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interpolation/1.13/plexus-interpolation-1.13.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-components/1.1.15/plexus-components-1.1.15.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-components/1.1.15/plexus-components-1.1.15.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/2.0.3/plexus-2.0.3.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/2.0.3/plexus-2.0.3.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-project/2.0.6/maven-project-2.0.6.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact-manager/2.0.6/maven-artifact-manager-2.0.6.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-profile/2.0.6/maven-profile-2.0.6.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-registry/2.0.6/maven-plugin-registry-2.0.6.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-project/2.0.6/maven-project-2.0.6.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-core/2.0.6/maven-core-2.0.6.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-core/2.0.6/maven-core-2.0.6.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-parameter-documenter/2.0.6/maven-plugin-parameter-documenter-2.0.6.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-registry/2.0.6/maven-plugin-registry-2.0.6.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact-manager/2.0.6/maven-artifact-manager-2.0.6.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-profile/2.0.6/maven-profile-2.0.6.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-repository-metadata/2.0.6/maven-repository-metadata-2.0.6.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/doxia/doxia-sink-api/1.0-alpha-7/doxia-sink-api-1.0-alpha-7.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/reporting/maven-reporting-api/2.0.6/maven-reporting-api-2.0.6.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-error-diagnostics/2.0.6/maven-error-diagnostics-2.0.6.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-parameter-documenter/2.0.6/maven-plugin-parameter-documenter-2.0.6.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/commons-cli/commons-cli/1.0/commons-cli-1.0.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-error-diagnostics/2.0.6/maven-error-diagnostics-2.0.6.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/doxia/doxia-sink-api/1.0-alpha-7/doxia-sink-api-1.0-alpha-7.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/reporting/maven-reporting-api/2.0.6/maven-reporting-api-2.0.6.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/classworlds/classworlds/1.1/classworlds-1.1.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/commons-cli/commons-cli/1.0/commons-cli-1.0.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact/2.0.6/maven-artifact-2.0.6.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-repository-metadata/2.0.6/maven-repository-metadata-2.0.6.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interactivity-api/1.0-alpha-4/plexus-interactivity-api-1.0-alpha-4.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-descriptor/2.0.6/maven-plugin-descriptor-2.0.6.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-settings/2.0.6/maven-settings-2.0.6.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/classworlds/classworlds/1.1/classworlds-1.1.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-model/2.0.6/maven-model-2.0.6.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interactivity-api/1.0-alpha-4/plexus-interactivity-api-1.0-alpha-4.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-settings/2.0.6/maven-settings-2.0.6.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-descriptor/2.0.6/maven-plugin-descriptor-2.0.6.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact/2.0.6/maven-artifact-2.0.6.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/2.0.5/plexus-utils-2.0.5.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-monitor/2.0.6/maven-monitor-2.0.6.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-filtering/1.1/maven-filtering-1.1.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-model/2.0.6/maven-model-2.0.6.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interpolation/1.13/plexus-interpolation-1.13.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/2.0.5/plexus-utils-2.0.5.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-filtering/1.1/maven-filtering-1.1.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-monitor/2.0.6/maven-monitor-2.0.6.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/plexus/plexus-build-api/0.0.4/plexus-build-api-0.0.4.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interpolation/1.13/plexus-interpolation-1.13.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/plexus/plexus-build-api/0.0.4/plexus-build-api-0.0.4.jar (0 B at 0 B/s)
 	[INFO] Using 'UTF-8' encoding to copy filtered resources.
 	[INFO] skip non existing resourceDirectory /Users/abdullah/Documents/ServletAndJsp/nazmul/src/main/resources
-	[INFO]
+	[INFO] 
 	[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ nazmul ---
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-api/2.0.9/maven-plugin-api-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-api/2.0.9/maven-plugin-api-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven/2.0.9/maven-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven/2.0.9/maven-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-parent/8/maven-parent-8.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-parent/8/maven-parent-8.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/4/apache-4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/4/apache-4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact/2.0.9/maven-artifact-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact/2.0.9/maven-artifact-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.5.1/plexus-utils-1.5.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.5.1/plexus-utils-1.5.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-core/2.0.9/maven-core-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-core/2.0.9/maven-core-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-settings/2.0.9/maven-settings-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-settings/2.0.9/maven-settings-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-model/2.0.9/maven-model-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-model/2.0.9/maven-model-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-parameter-documenter/2.0.9/maven-plugin-parameter-documenter-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-parameter-documenter/2.0.9/maven-plugin-parameter-documenter-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-profile/2.0.9/maven-profile-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-profile/2.0.9/maven-profile-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-repository-metadata/2.0.9/maven-repository-metadata-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-repository-metadata/2.0.9/maven-repository-metadata-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-error-diagnostics/2.0.9/maven-error-diagnostics-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-error-diagnostics/2.0.9/maven-error-diagnostics-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-project/2.0.9/maven-project-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-project/2.0.9/maven-project-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact-manager/2.0.9/maven-artifact-manager-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact-manager/2.0.9/maven-artifact-manager-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-registry/2.0.9/maven-plugin-registry-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-registry/2.0.9/maven-plugin-registry-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-descriptor/2.0.9/maven-plugin-descriptor-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-descriptor/2.0.9/maven-plugin-descriptor-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-monitor/2.0.9/maven-monitor-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-monitor/2.0.9/maven-monitor-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-toolchain/1.0/maven-toolchain-1.0.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-toolchain/1.0/maven-toolchain-1.0.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-utils/0.1/maven-shared-utils-0.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-utils/0.1/maven-shared-utils-0.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-components/18/maven-shared-components-18.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-components/18/maven-shared-components-18.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/2.0.1/jsr305-2.0.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/2.0.1/jsr305-2.0.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-incremental/1.1/maven-shared-incremental-1.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-incremental/1.1/maven-shared-incremental-1.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-components/19/maven-shared-components-19.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-components/19/maven-shared-components-19.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-api/2.2.1/maven-plugin-api-2.2.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-api/2.2.1/maven-plugin-api-2.2.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven/2.2.1/maven-2.2.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven/2.2.1/maven-2.2.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-parent/11/maven-parent-11.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-parent/11/maven-parent-11.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/5/apache-5.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/5/apache-5.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-core/2.2.1/maven-core-2.2.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-core/2.2.1/maven-core-2.2.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-settings/2.2.1/maven-settings-2.2.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-settings/2.2.1/maven-settings-2.2.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-model/2.2.1/maven-model-2.2.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-model/2.2.1/maven-model-2.2.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interpolation/1.11/plexus-interpolation-1.11.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interpolation/1.11/plexus-interpolation-1.11.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-parameter-documenter/2.2.1/maven-plugin-parameter-documenter-2.2.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-parameter-documenter/2.2.1/maven-plugin-parameter-documenter-2.2.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/slf4j/slf4j-jdk14/1.5.6/slf4j-jdk14-1.5.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/slf4j/slf4j-jdk14/1.5.6/slf4j-jdk14-1.5.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/slf4j/slf4j-parent/1.5.6/slf4j-parent-1.5.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/slf4j/slf4j-parent/1.5.6/slf4j-parent-1.5.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.5.6/slf4j-api-1.5.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.5.6/slf4j-api-1.5.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/1.5.6/jcl-over-slf4j-1.5.6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/1.5.6/jcl-over-slf4j-1.5.6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-profile/2.2.1/maven-profile-2.2.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-profile/2.2.1/maven-profile-2.2.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact/2.2.1/maven-artifact-2.2.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact/2.2.1/maven-artifact-2.2.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-repository-metadata/2.2.1/maven-repository-metadata-2.2.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-repository-metadata/2.2.1/maven-repository-metadata-2.2.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-error-diagnostics/2.2.1/maven-error-diagnostics-2.2.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-error-diagnostics/2.2.1/maven-error-diagnostics-2.2.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-project/2.2.1/maven-project-2.2.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-project/2.2.1/maven-project-2.2.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact-manager/2.2.1/maven-artifact-manager-2.2.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact-manager/2.2.1/maven-artifact-manager-2.2.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/backport-util-concurrent/backport-util-concurrent/3.1/backport-util-concurrent-3.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/backport-util-concurrent/backport-util-concurrent/3.1/backport-util-concurrent-3.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-registry/2.2.1/maven-plugin-registry-2.2.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-registry/2.2.1/maven-plugin-registry-2.2.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-descriptor/2.2.1/maven-plugin-descriptor-2.2.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-descriptor/2.2.1/maven-plugin-descriptor-2.2.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-monitor/2.2.1/maven-monitor-2.2.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-monitor/2.2.1/maven-monitor-2.2.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/plexus/plexus-sec-dispatcher/1.3/plexus-sec-dispatcher-1.3.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/plexus/plexus-sec-dispatcher/1.3/plexus-sec-dispatcher-1.3.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/spice/spice-parent/12/spice-parent-12.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/spice/spice-parent/12/spice-parent-12.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/forge/forge-parent/4/forge-parent-4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/forge/forge-parent/4/forge-parent-4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.5.5/plexus-utils-1.5.5.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.5.5/plexus-utils-1.5.5.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-containers/1.5.5/plexus-containers-1.5.5.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-containers/1.5.5/plexus-containers-1.5.5.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/2.0.7/plexus-2.0.7.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/2.0.7/plexus-2.0.7.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-api/2.2/plexus-compiler-api-2.2.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-api/2.2/plexus-compiler-api-2.2.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler/2.2/plexus-compiler-2.2.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler/2.2/plexus-compiler-2.2.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-components/1.3.1/plexus-components-1.3.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-components/1.3.1/plexus-components-1.3.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/3.3.1/plexus-3.3.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/3.3.1/plexus-3.3.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/spice/spice-parent/17/spice-parent-17.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/spice/spice-parent/17/spice-parent-17.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/forge/forge-parent/10/forge-parent-10.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/sonatype/forge/forge-parent/10/forge-parent-10.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/3.0.8/plexus-utils-3.0.8.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/3.0.8/plexus-utils-3.0.8.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/3.2/plexus-3.2.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus/3.2/plexus-3.2.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.2/plexus-compiler-manager-2.2.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.2/plexus-compiler-manager-2.2.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.2/plexus-compiler-javac-2.2.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.2/plexus-compiler-javac-2.2.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compilers/2.2/plexus-compilers-2.2.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compilers/2.2/plexus-compilers-2.2.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-container-default/1.5.5/plexus-container-default-1.5.5.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-container-default/1.5.5/plexus-container-default-1.5.5.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.4.5/plexus-utils-1.4.5.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.4.5/plexus-utils-1.4.5.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-classworlds/2.2.2/plexus-classworlds-2.2.2.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-classworlds/2.2.2/plexus-classworlds-2.2.2.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/xbean/xbean-reflect/3.4/xbean-reflect-3.4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/xbean/xbean-reflect/3.4/xbean-reflect-3.4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/xbean/xbean/3.4/xbean-3.4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/xbean/xbean/3.4/xbean-3.4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/log4j/log4j/1.2.12/log4j-1.2.12.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/log4j/log4j/1.2.12/log4j-1.2.12.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/commons-logging/commons-logging-api/1.1/commons-logging-api-1.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/commons-logging/commons-logging-api/1.1/commons-logging-api-1.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/com/google/collections/google-collections/1.0/google-collections-1.0.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/com/google/collections/google-collections/1.0/google-collections-1.0.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/com/google/google/1/google-1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/com/google/google/1/google-1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/junit/junit/3.8.2/junit-3.8.2.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/junit/junit/3.8.2/junit-3.8.2.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-api/2.0.9/maven-plugin-api-2.0.9.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact/2.0.9/maven-artifact-2.0.9.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.5.1/plexus-utils-1.5.1.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-core/2.0.9/maven-core-2.0.9.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-settings/2.0.9/maven-settings-2.0.9.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-core/2.0.9/maven-core-2.0.9.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-settings/2.0.9/maven-settings-2.0.9.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-api/2.0.9/maven-plugin-api-2.0.9.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/1.5.1/plexus-utils-1.5.1.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact/2.0.9/maven-artifact-2.0.9.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-repository-metadata/2.0.9/maven-repository-metadata-2.0.9.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-model/2.0.9/maven-model-2.0.9.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-profile/2.0.9/maven-profile-2.0.9.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-parameter-documenter/2.0.9/maven-plugin-parameter-documenter-2.0.9.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-error-diagnostics/2.0.9/maven-error-diagnostics-2.0.9.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-parameter-documenter/2.0.9/maven-plugin-parameter-documenter-2.0.9.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-model/2.0.9/maven-model-2.0.9.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-error-diagnostics/2.0.9/maven-error-diagnostics-2.0.9.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-registry/2.0.9/maven-plugin-registry-2.0.9.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-project/2.0.9/maven-project-2.0.9.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-descriptor/2.0.9/maven-plugin-descriptor-2.0.9.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-profile/2.0.9/maven-profile-2.0.9.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-repository-metadata/2.0.9/maven-repository-metadata-2.0.9.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact-manager/2.0.9/maven-artifact-manager-2.0.9.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-monitor/2.0.9/maven-monitor-2.0.9.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-monitor/2.0.9/maven-monitor-2.0.9.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-artifact-manager/2.0.9/maven-artifact-manager-2.0.9.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-project/2.0.9/maven-project-2.0.9.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-descriptor/2.0.9/maven-plugin-descriptor-2.0.9.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-plugin-registry/2.0.9/maven-plugin-registry-2.0.9.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-incremental/1.1/maven-shared-incremental-1.1.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/2.0.1/jsr305-2.0.1.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-utils/0.1/maven-shared-utils-0.1.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-toolchain/1.0/maven-toolchain-1.0.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/2.0.1/jsr305-2.0.1.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-utils/0.1/maven-shared-utils-0.1.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-toolchain/1.0/maven-toolchain-1.0.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-incremental/1.1/maven-shared-incremental-1.1.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-container-default/1.5.5/plexus-container-default-1.5.5.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.2/plexus-compiler-javac-2.2.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.2/plexus-compiler-manager-2.2.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-api/2.2/plexus-compiler-api-2.2.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-classworlds/2.2.2/plexus-classworlds-2.2.2.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-container-default/1.5.5/plexus-container-default-1.5.5.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/xbean/xbean-reflect/3.4/xbean-reflect-3.4.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.2/plexus-compiler-javac-2.2.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-api/2.2/plexus-compiler-api-2.2.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.2/plexus-compiler-manager-2.2.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/com/google/collections/google-collections/1.0/google-collections-1.0.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-classworlds/2.2.2/plexus-classworlds-2.2.2.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/junit/junit/3.8.2/junit-3.8.2.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/commons-logging/commons-logging-api/1.1/commons-logging-api-1.1.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/log4j/log4j/1.2.12/log4j-1.2.12.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/log4j/log4j/1.2.12/log4j-1.2.12.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/xbean/xbean-reflect/3.4/xbean-reflect-3.4.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/com/google/collections/google-collections/1.0/google-collections-1.0.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/junit/junit/3.8.2/junit-3.8.2.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/commons-logging/commons-logging-api/1.1/commons-logging-api-1.1.jar (0 B at 0 B/s)
 	[INFO] Changes detected - recompiling the module!
 	[INFO] Compiling 1 source file to /Users/abdullah/Documents/ServletAndJsp/nazmul/target/classes
-	[INFO]
+	[INFO] 
 	[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ nazmul ---
 	[INFO] Using 'UTF-8' encoding to copy filtered resources.
 	[INFO] skip non existing resourceDirectory /Users/abdullah/Documents/ServletAndJsp/nazmul/src/test/resources
-	[INFO]
+	[INFO] 
 	[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ nazmul ---
 	[INFO] Changes detected - recompiling the module!
 	[INFO] Compiling 1 source file to /Users/abdullah/Documents/ServletAndJsp/nazmul/target/test-classes
-	[INFO]
+	[INFO] 
 	[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ nazmul ---
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire-booter/2.12.4/surefire-booter-2.12.4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire-booter/2.12.4/surefire-booter-2.12.4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire-api/2.12.4/surefire-api-2.12.4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire-api/2.12.4/surefire-api-2.12.4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/maven-surefire-common/2.12.4/maven-surefire-common-2.12.4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/maven-surefire-common/2.12.4/maven-surefire-common-2.12.4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugin-tools/maven-plugin-annotations/3.1/maven-plugin-annotations-3.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugin-tools/maven-plugin-annotations/3.1/maven-plugin-annotations-3.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugin-tools/maven-plugin-tools/3.1/maven-plugin-tools-3.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugin-tools/maven-plugin-tools/3.1/maven-plugin-tools-3.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/reporting/maven-reporting-api/2.0.9/maven-reporting-api-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/reporting/maven-reporting-api/2.0.9/maven-reporting-api-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/reporting/maven-reporting/2.0.9/maven-reporting-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/reporting/maven-reporting/2.0.9/maven-reporting-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-toolchain/2.0.9/maven-toolchain-2.0.9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-toolchain/2.0.9/maven-toolchain-2.0.9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/commons/commons-parent/22/commons-parent-22.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/commons/commons-parent/22/commons-parent-22.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/9/apache-9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/9/apache-9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-common-artifact-filters/1.3/maven-common-artifact-filters-1.3.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-common-artifact-filters/1.3/maven-common-artifact-filters-1.3.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-components/12/maven-shared-components-12.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-components/12/maven-shared-components-12.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-parent/13/maven-parent-13.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-parent/13/maven-parent-13.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/6/apache-6.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/apache/6/apache-6.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-container-default/1.0-alpha-9/plexus-container-default-1.0-alpha-9.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-container-default/1.0-alpha-9/plexus-container-default-1.0-alpha-9.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire-booter/2.12.4/surefire-booter-2.12.4.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/maven-surefire-common/2.12.4/maven-surefire-common-2.12.4.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire-api/2.12.4/surefire-api-2.12.4.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-common-artifact-filters/1.3/maven-common-artifact-filters-1.3.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/shared/maven-common-artifact-filters/1.3/maven-common-artifact-filters-1.3.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire-api/2.12.4/surefire-api-2.12.4.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/reporting/maven-reporting-api/2.0.9/maven-reporting-api-2.0.9.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/3.0.8/plexus-utils-3.0.8.jar
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-toolchain/2.0.9/maven-toolchain-2.0.9.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/maven-toolchain/2.0.9/maven-toolchain-2.0.9.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/reporting/maven-reporting-api/2.0.9/maven-reporting-api-2.0.9.jar (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugin-tools/maven-plugin-annotations/3.1/maven-plugin-annotations-3.1.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/plugin-tools/maven-plugin-annotations/3.1/maven-plugin-annotations-3.1.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire-booter/2.12.4/surefire-booter-2.12.4.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/maven-surefire-common/2.12.4/maven-surefire-common-2.12.4.jar (0 B at 0 B/s)
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/3.0.8/plexus-utils-3.0.8.jar (0 B at 0 B/s)
 	[INFO] Surefire report directory: /Users/abdullah/Documents/ServletAndJsp/nazmul/target/surefire-reports
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire-junit3/2.12.4/surefire-junit3-2.12.4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire-junit3/2.12.4/surefire-junit3-2.12.4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire-providers/2.12.4/surefire-providers-2.12.4.pom
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire-providers/2.12.4/surefire-providers-2.12.4.pom (0 B at 0 B/s)
-	Downloading from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire-junit3/2.12.4/surefire-junit3-2.12.4.jar
-	Downloaded from maven.dev.snaponglobal.com: http://repo1.maven.org/maven2/org/apache/maven/surefire/surefire-junit3/2.12.4/surefire-junit3-2.12.4.jar (0 B at 0 B/s)
 
 	-------------------------------------------------------
 	 T E S T S
 	-------------------------------------------------------
 	Running com.abdullah.nazmul.AppTest
-	Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 sec
+	Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 sec
 
 	Results :
 
@@ -1575,10 +1147,106 @@
 	[INFO] ------------------------------------------------------------------------
 	[INFO] BUILD SUCCESS
 	[INFO] ------------------------------------------------------------------------
-	[INFO] Total time: 03:53 min
-	[INFO] Finished at: 2018-04-05T08:32:23+06:00
+	[INFO] Total time: 4.109 s
+	[INFO] Finished at: 2018-04-06T17:43:04+06:00
 	[INFO] ------------------------------------------------------------------------
-	[WARNING] The requested profile "test" could not be activated because it does not exist.
-	➜  nazmul git:(master) ✗
+	➜  nazmul git:(master)
 
+
+> maven-antrun-plugin
+
+
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.abdullah</groupId>
+	<artifactId>nazmul</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>nazmul</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<profiles>
+		<profile>
+			<id>test</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>test</value>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
+
+
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.1</version>
+				<executions>
+
+
+
+					<execution>
+						<id>id.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<echo>clean phase</echo>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+```
+
+#### reslut
+
+	➜  nazmul git:(master) ✗ mvn clean
+	[INFO] Scanning for projects...
+	[INFO] 
+	[INFO] ------------------------< com.abdullah:nazmul >-------------------------
+	[INFO] Building nazmul 0.0.1-SNAPSHOT
+	[INFO] --------------------------------[ jar ]---------------------------------
+	[INFO] 
+	[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ nazmul ---
+	[INFO] Deleting /Users/abdullah/Documents/ServletAndJsp/nazmul/target
+	[INFO] 
+	[INFO] --- maven-antrun-plugin:1.1:run (id.clean) @ nazmul ---
+	[INFO] Executing tasks
+	     [echo] clean phase
+	[INFO] Executed tasks
+	[INFO] ------------------------------------------------------------------------
+	[INFO] BUILD SUCCESS
+	[INFO] ------------------------------------------------------------------------
+	[INFO] Total time: 2.039 s
+	[INFO] Finished at: 2018-04-06T17:54:49+06:00
+	[INFO] ------------------------------------------------------------------------
+	➜  nazmul git:(master) ✗ 
 
