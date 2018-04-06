@@ -1250,3 +1250,167 @@
 	[INFO] ------------------------------------------------------------------------
 	➜  nazmul git:(master) ✗ 
 
+
+>  mvn clean
+
+	➜  nazmul git:(master) ✗ mvn clean
+	[INFO] Scanning for projects...
+	[INFO] 
+	[INFO] ------------------------< com.abdullah:nazmul >-------------------------
+	[INFO] Building nazmul 0.0.1-SNAPSHOT
+	[INFO] --------------------------------[ jar ]---------------------------------
+	[INFO] 
+	[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ nazmul ---
+	[INFO] Deleting /Users/abdullah/Documents/ServletAndJsp/nazmul/target
+	[INFO] 
+	[INFO] --- maven-antrun-plugin:1.1:run (id.clean) @ nazmul ---
+	[INFO] Executing tasks
+	     [echo] clean phase
+	[INFO] Executed tasks
+	[INFO] ------------------------------------------------------------------------
+	[INFO] BUILD SUCCESS
+	[INFO] ------------------------------------------------------------------------
+	[INFO] Total time: 2.039 s
+	[INFO] Finished at: 2018-04-06T17:54:49+06:00
+	[INFO] ------------------------------------------------------------------------
+	➜  nazmul git:(master)
+
+
+> mvn clean package
+
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.abdullah</groupId>
+	<artifactId>nazmul</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>nazmul</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<profiles>
+		<profile>
+			<id>test</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>test</value>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
+
+
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.1</version>
+				<executions>
+
+
+
+					<execution>
+						<id>id.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<echo>clean phase</echo>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+```
+
+
+#### Result
+
+	➜  nazmul git:(master) ✗ mvn clean package
+	[INFO] Scanning for projects...
+	[INFO] 
+	[INFO] ------------------------< com.abdullah:nazmul >-------------------------
+	[INFO] Building nazmul 0.0.1-SNAPSHOT
+	[INFO] --------------------------------[ jar ]---------------------------------
+	[INFO] 
+	[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ nazmul ---
+	[INFO] Deleting /Users/abdullah/Documents/ServletAndJsp/nazmul/target
+	[INFO] 
+	[INFO] --- maven-antrun-plugin:1.1:run (id.clean) @ nazmul ---
+	[INFO] Executing tasks
+	     [echo] clean phase
+	[INFO] Executed tasks
+	[INFO] 
+	[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ nazmul ---
+	[INFO] Using 'UTF-8' encoding to copy filtered resources.
+	[INFO] skip non existing resourceDirectory /Users/abdullah/Documents/ServletAndJsp/nazmul/src/main/resources
+	[INFO] 
+	[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ nazmul ---
+	[INFO] Changes detected - recompiling the module!
+	[INFO] Compiling 1 source file to /Users/abdullah/Documents/ServletAndJsp/nazmul/target/classes
+	[INFO] 
+	[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ nazmul ---
+	[INFO] Using 'UTF-8' encoding to copy filtered resources.
+	[INFO] skip non existing resourceDirectory /Users/abdullah/Documents/ServletAndJsp/nazmul/src/test/resources
+	[INFO] 
+	[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ nazmul ---
+	[INFO] Changes detected - recompiling the module!
+	[INFO] Compiling 1 source file to /Users/abdullah/Documents/ServletAndJsp/nazmul/target/test-classes
+	[INFO] 
+	[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ nazmul ---
+	[INFO] Surefire report directory: /Users/abdullah/Documents/ServletAndJsp/nazmul/target/surefire-reports
+
+	-------------------------------------------------------
+	 T E S T S
+	-------------------------------------------------------
+	Running com.abdullah.nazmul.AppTest
+	Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.01 sec
+
+	Results :
+
+	Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+	[INFO] 
+	[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ nazmul ---
+	[INFO] Building jar: /Users/abdullah/Documents/ServletAndJsp/nazmul/target/nazmul-0.0.1-SNAPSHOT.jar
+	[INFO] ------------------------------------------------------------------------
+	[INFO] BUILD SUCCESS
+	[INFO] ------------------------------------------------------------------------
+	[INFO] Total time: 3.782 s
+	[INFO] Finished at: 2018-04-06T18:05:16+06:00
+	[INFO] ------------------------------------------------------------------------
+	➜  nazmul git:(master)
+
+
+## Now go to /Users/abdullah/Documents/ServletAndJsp/nazmul/target/classes
+
+> java com.abdullah.nazmul.App
+
+	➜  classes git:(master) ✗ java com.abdullah.nazmul.App
+	Hello World!
+
