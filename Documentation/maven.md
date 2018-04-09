@@ -1414,3 +1414,122 @@
 	➜  classes git:(master) ✗ java com.abdullah.nazmul.App
 	Hello World!
 
+
+
+
+# Create new fresh maven project using command page 48
+
+> mvn archetype:generate -DgroupId=com.companyname.bank -DartifactId=consumerBanking -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+#### Result
+
+	➜  ServletAndJsp git:(master) ✗ mvn archetype:generate -DgroupId=com.companyname.bank -DartifactId=consumerBanking -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+	[INFO] Scanning for projects...
+	[INFO] 
+	[INFO] ------------------< org.apache.maven:standalone-pom >-------------------
+	[INFO] Building Maven Stub Project (No POM) 1
+	[INFO] --------------------------------[ pom ]---------------------------------
+	[INFO] 
+	[INFO] >>> maven-archetype-plugin:3.0.1:generate (default-cli) > generate-sources @ standalone-pom >>>
+	[INFO] 
+	[INFO] <<< maven-archetype-plugin:3.0.1:generate (default-cli) < generate-sources @ standalone-pom <<<
+	[INFO] 
+	[INFO] 
+	[INFO] --- maven-archetype-plugin:3.0.1:generate (default-cli) @ standalone-pom ---
+	[INFO] Generating project in Batch mode
+	Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-quickstart/1.0/maven-archetype-quickstart-1.0.pom
+	Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-quickstart/1.0/maven-archetype-quickstart-1.0.pom (703 B at 1.1 kB/s)
+	Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-bundles/2/maven-archetype-bundles-2.pom
+	Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-bundles/2/maven-archetype-bundles-2.pom (1.5 kB at 2.4 kB/s)
+	Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/archetype/maven-archetype-parent/1/maven-archetype-parent-1.pom
+	Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/archetype/maven-archetype-parent/1/maven-archetype-parent-1.pom (1.3 kB at 2.1 kB/s)
+	Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/4/maven-parent-4.pom
+	Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/4/maven-parent-4.pom (10.0 kB at 9.8 kB/s)
+	Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-quickstart/1.0/maven-archetype-quickstart-1.0.jar
+	Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-quickstart/1.0/maven-archetype-quickstart-1.0.jar (4.3 kB at 2.7 kB/s)
+	[INFO] ----------------------------------------------------------------------------
+	[INFO] Using following parameters for creating project from Old (1.x) Archetype: maven-archetype-quickstart:1.0
+	[INFO] ----------------------------------------------------------------------------
+	[INFO] Parameter: basedir, Value: /Users/abdullah/Documents/ServletAndJsp
+	[INFO] Parameter: package, Value: com.companyname.bank
+	[INFO] Parameter: groupId, Value: com.companyname.bank
+	[INFO] Parameter: artifactId, Value: consumerBanking
+	[INFO] Parameter: packageName, Value: com.companyname.bank
+	[INFO] Parameter: version, Value: 1.0-SNAPSHOT
+	[INFO] project created from Old (1.x) Archetype in dir: /Users/abdullah/Documents/ServletAndJsp/consumerBanking
+	[INFO] ------------------------------------------------------------------------
+	[INFO] BUILD SUCCESS
+	[INFO] ------------------------------------------------------------------------
+	[INFO] Total time: 01:37 min
+	[INFO] Finished at: 2018-04-06T18:41:32+06:00
+	[INFO] ------------------------------------------------------------------------
+	➜  ServletAndJsp git:(master) ✗ 
+
+
+> mvn clean package
+
+#### then maven will start building project
+
+	➜  consumerBanking git:(master) ✗ mvn clean package
+	[INFO] Scanning for projects...
+	[INFO] 
+	[INFO] ----------------< com.companyname.bank:consumerBanking >----------------
+	[INFO] Building consumerBanking 1.0-SNAPSHOT
+	[INFO] --------------------------------[ jar ]---------------------------------
+	[INFO] 
+	[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ consumerBanking ---
+	[INFO] Deleting /Users/abdullah/Documents/ServletAndJsp/consumerBanking/target
+	[INFO] 
+	[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ consumerBanking ---
+	[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+	[INFO] skip non existing resourceDirectory /Users/abdullah/Documents/ServletAndJsp/consumerBanking/src/main/resources
+	[INFO] 
+	[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ consumerBanking ---
+	[INFO] Changes detected - recompiling the module!
+	[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+	[INFO] Compiling 1 source file to /Users/abdullah/Documents/ServletAndJsp/consumerBanking/target/classes
+	[INFO] 
+	[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ consumerBanking ---
+	[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+	[INFO] skip non existing resourceDirectory /Users/abdullah/Documents/ServletAndJsp/consumerBanking/src/test/resources
+	[INFO] 
+	[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ consumerBanking ---
+	[INFO] Changes detected - recompiling the module!
+	[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+	[INFO] Compiling 1 source file to /Users/abdullah/Documents/ServletAndJsp/consumerBanking/target/test-classes
+	[INFO] 
+	[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ consumerBanking ---
+	[INFO] Surefire report directory: /Users/abdullah/Documents/ServletAndJsp/consumerBanking/target/surefire-reports
+
+	-------------------------------------------------------
+	 T E S T S
+	-------------------------------------------------------
+	Running com.companyname.bank.AppTest
+	Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 sec
+
+	Results :
+
+	Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+	[INFO] 
+	[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ consumerBanking ---
+	[INFO] Building jar: /Users/abdullah/Documents/ServletAndJsp/consumerBanking/target/consumerBanking-1.0-SNAPSHOT.jar
+	[INFO] ------------------------------------------------------------------------
+	[INFO] BUILD SUCCESS
+	[INFO] ------------------------------------------------------------------------
+	[INFO] Total time: 4.226 s
+	[INFO] Finished at: 2018-04-06T18:53:45+06:00
+	[INFO] ------------------------------------------------------------------------
+	➜  consumerBanking git:(master) ✗ 
+
+#### then go consumerBanking/target/classes
+
+and exicute command
+
+> java com.companyname.bank.App
+
+	➜  classes git:(master) ✗ java com.companyname.bank.App
+	Hello World!
+	➜  classes git:(master) ✗
+
+
