@@ -980,3 +980,60 @@ username and password abdullah
 	2) "aaaa"
 	3) "bbbb"
 	127.0.0.1:6379>
+
+Publish = sender
+Subscribe = receiver
+
+SUBSCRIBE, UNSUBSCRIBE and PUBLISH implement the Publish/Subscribe messaging paradigm where senders (publishers) are not programmed to send their messages to specific receivers (subscribers). 
+PSUBSCRIBE pattern [pattern ...]
+Listen for messages published to channels matching the given patterns
+PUBSUB subcommand [argument [argument ...]]
+Inspect the state of the Pub/Sub subsystem
+PUBLISH channel message
+Post a message to a channel
+PUNSUBSCRIBE [pattern [pattern ...]]
+Stop listening for messages posted to channels matching the given patterns
+SUBSCRIBE channel [channel ...]
+Listen for messages published to the given channels
+UNSUBSCRIBE [channel [channel ...]]
+Stop listening for messages posted to the given channels
+
+
+
+
+#### SUBSCRIBE redis
+
+	127.0.0.1:6379> SUBSCRIBE redis
+	Reading messages... (press Ctrl-C to quit)
+	1) "subscribe"
+	2) "redis"
+	3) (integer) 1
+	1) "message"
+	2) "redis"
+	3) "hi"
+	1) "message"
+	2) "redis"
+	3) "hello world"
+	1) "message"
+	2) "redis"
+	3) "hello world"
+
+#### PUBLISH redis hi
+	127.0.0.1:6379> PUBLISH redis hi
+	(integer) 1
+	127.0.0.1:6379> PUBLISH redis "hello world"
+	(integer) 1
+	127.0.0.1:6379> PUBLISH redis "hello world"
+	(integer) 2
+	127.0.0.1:6379>
+
+#### SUBSCRIBE redis
+
+	127.0.0.1:6379> SUBSCRIBE redis
+	Reading messages... (press Ctrl-C to quit)
+	1) "subscribe"
+	2) "redis"
+	3) (integer) 1
+	1) "message"
+	2) "redis"
+	3) "hello world"

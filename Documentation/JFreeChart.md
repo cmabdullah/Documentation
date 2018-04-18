@@ -1,3 +1,59 @@
+
+
+## dependency
+```xml
+      <dependency>
+         <groupId>org.jfree</groupId>
+         <artifactId>jfreechart</artifactId>
+         <version>1.0.15</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jfree</groupId>
+         <artifactId>jcommon</artifactId>
+         <version>1.0.17</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.testng</groupId>
+         <artifactId>testng</artifactId>
+         <version>6.8.7</version>
+         <scope>test</scope>
+      </dependency>
+
+
+      <dependency>
+         <groupId>org.apache.xmlgraphics</groupId>
+         <artifactId>batik-dom</artifactId>
+         <version>1.9.1</version>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.xmlgraphics</groupId>
+         <artifactId>batik-xml</artifactId>
+         <version>1.9.1</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.apache.xmlgraphics</groupId>
+         <artifactId>batik-util</artifactId>
+         <version>1.9.1</version>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.xmlgraphics</groupId>
+         <artifactId>batik-awt-util</artifactId>
+         <version>1.9.1</version>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.xmlgraphics</groupId>
+         <artifactId>batik-svggen</artifactId>
+         <version>1.9.1</version>
+      </dependency>
+```
+
+
+
+
+
 ## 01 PieChart_AWT
 ```java
 import javax.swing.JPanel;
