@@ -1,7 +1,8 @@
 
 > yp  https://www.youtube.com/watch\?v\=A0Nlz-L9ezo\&list\=PLS1QulWo1RIYZZxQdap7Sd0ARKFI-XVsd\&index\=4
 
-
+# GUI
+> https://itunes.apple.com/us/app/medis-gui-for-redis/id1063631769
 ##### 753:C 02 Apr 12:20:05.460 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
 ##### 753:C 02 Apr 12:20:05.461 # Redis version=4.0.9, bits=64, commit=00000000, modified=0, pid=753, just started
 ##### 753:C 02 Apr 12:20:05.461 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
