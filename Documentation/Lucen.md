@@ -48,13 +48,10 @@ public class Indexer {
 
 	public Indexer(String indexDirectoryPath) throws IOException {
 		//this directory will contain the indexes
-		Directory indexDirectory = 
-				FSDirectory.open(new File(indexDirectoryPath));
+		Directory indexDirectory = FSDirectory.open(new File(indexDirectoryPath));
 
 		//create the indexer
-		writer = new IndexWriter(indexDirectory, 
-				new StandardAnalyzer(Version.LUCENE_36),true, 
-				IndexWriter.MaxFieldLength.UNLIMITED);
+		writer = new IndexWriter(indexDirectory, new StandardAnalyzer(Version.LUCENE_36),true,IndexWriter.MaxFieldLength.UNLIMITED);
 	}
 
 	public void close() throws CorruptIndexException, IOException {
@@ -67,11 +64,9 @@ public class Indexer {
 		//index file contents
 		Field contentField = new Field(LuceneConstants.CONTENTS, new FileReader(file));
 		//index file name
-		Field fileNameField = new Field(LuceneConstants.FILE_NAME,
-				file.getName(),Field.Store.YES,Field.Index.NOT_ANALYZED);
+		Field fileNameField = new Field(LuceneConstants.FILE_NAME,file.getName(),Field.Store.YES,Field.Index.NOT_ANALYZED);
 		//index file path
-		Field filePathField = new Field(LuceneConstants.FILE_PATH,
-				file.getCanonicalPath(),Field.Store.YES,Field.Index.NOT_ANALYZED);
+		Field filePathField = new Field(LuceneConstants.FILE_PATH,file.getCanonicalPath(),Field.Store.YES,Field.Index.NOT_ANALYZED);
 
 		document.add(contentField);
 		document.add(fileNameField);
@@ -86,8 +81,7 @@ public class Indexer {
 		writer.addDocument(document);
 	}
 
-	public int createIndex(String dataDirPath, FileFilter filter) 
-			throws IOException {
+	public int createIndex(String dataDirPath, FileFilter filter) throws IOException {
 		//get all files in the data directory
 		File[] files = new File(dataDirPath).listFiles();
 
@@ -132,23 +126,18 @@ public class Searcher {
 	QueryParser queryParser;
 	Query query;
 
-	public Searcher(String indexDirectoryPath) 
-			throws IOException {
-		Directory indexDirectory = 
-				FSDirectory.open(new File(indexDirectoryPath));
+	public Searcher(String indexDirectoryPath) throws IOException {
+		Directory indexDirectory = FSDirectory.open(new File(indexDirectoryPath));
 		indexSearcher = new IndexSearcher(indexDirectory);
-		queryParser = new QueryParser(Version.LUCENE_36, LuceneConstants.CONTENTS,
-				new StandardAnalyzer(Version.LUCENE_36));
+		queryParser = new QueryParser(Version.LUCENE_36, LuceneConstants.CONTENTS,new StandardAnalyzer(Version.LUCENE_36));
 	}
 
-	public TopDocs search( String searchQuery) 
-			throws IOException, ParseException {
+	public TopDocs search( String searchQuery) throws IOException, ParseException {
 		query = queryParser.parse(searchQuery);
 		return indexSearcher.search(query, LuceneConstants.MAX_SEARCH);
 	}
 
-	public Document getDocument(ScoreDoc scoreDoc) 
-			throws CorruptIndexException, IOException {
+	public Document getDocument(ScoreDoc scoreDoc) throws CorruptIndexException, IOException {
 		return indexSearcher.doc(scoreDoc.doc);	
 	}
 
@@ -206,12 +195,10 @@ public class LuceneTester {
 		TopDocs hits = searcher.search(searchQuery);
 		long endTime = System.currentTimeMillis();
 
-		System.out.println(hits.totalHits +
-				" documents found. Time :" + (endTime - startTime));
+		System.out.println(hits.totalHits +" documents found. Time :" + (endTime - startTime));
 		for(ScoreDoc scoreDoc : hits.scoreDocs) {
 			Document doc = searcher.getDocument(scoreDoc);
-			System.out.println("File: "
-					+ doc.get(LuceneConstants.FILE_PATH));
+			System.out.println("File: "+ doc.get(LuceneConstants.FILE_PATH));
 		}
 		searcher.close();
 	}
@@ -272,13 +259,10 @@ public class Indexer {
 
 	public Indexer(String indexDirectoryPath) throws IOException {
 		//this directory will contain the indexes
-		Directory indexDirectory = 
-				FSDirectory.open(new File(indexDirectoryPath));
+		Directory indexDirectory = FSDirectory.open(new File(indexDirectoryPath));
 
 		//create the indexer
-		writer = new IndexWriter(indexDirectory, 
-				new StandardAnalyzer(Version.LUCENE_36),true, 
-				IndexWriter.MaxFieldLength.UNLIMITED);
+		writer = new IndexWriter(indexDirectory, new StandardAnalyzer(Version.LUCENE_36),true,IndexWriter.MaxFieldLength.UNLIMITED);
 	}
 
 	public void close() throws CorruptIndexException, IOException {
@@ -291,11 +275,9 @@ public class Indexer {
 		//index file contents
 		Field contentField = new Field(LuceneConstants.CONTENTS, new FileReader(file));
 		//index file name
-		Field fileNameField = new Field(LuceneConstants.FILE_NAME,
-				file.getName(),Field.Store.YES,Field.Index.NOT_ANALYZED);
+		Field fileNameField = new Field(LuceneConstants.FILE_NAME,file.getName(),Field.Store.YES,Field.Index.NOT_ANALYZED);
 		//index file path
-		Field filePathField = new Field(LuceneConstants.FILE_PATH,
-				file.getCanonicalPath(),Field.Store.YES,Field.Index.NOT_ANALYZED);
+		Field filePathField = new Field(LuceneConstants.FILE_PATH,file.getCanonicalPath(),Field.Store.YES,Field.Index.NOT_ANALYZED);
 
 		document.add(contentField);
 		document.add(fileNameField);
@@ -310,8 +292,7 @@ public class Indexer {
 		writer.addDocument(document);
 	}
 
-	public int createIndex(String dataDirPath, FileFilter filter) 
-			throws IOException {
+	public int createIndex(String dataDirPath, FileFilter filter) throws IOException {
 		//get all files in the data directory
 		File[] files = new File(dataDirPath).listFiles();
 
@@ -364,8 +345,7 @@ public class LuceneTester {
 		long startTime = System.currentTimeMillis();
 		numIndexed = indexer.createIndex(dataDir, new TextFileFilter()); long endTime = System.currentTimeMillis();
 		indexer.close();
-		System.out.println(numIndexed+" File indexed, time taken: "
-				+(endTime-startTime)+" ms");
+		System.out.println(numIndexed+" File indexed, time taken: "+(endTime-startTime)+" ms");
 	}
 
 }
