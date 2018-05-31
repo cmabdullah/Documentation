@@ -66,7 +66,7 @@ Webapp Runner allows you to launch an application in a Tomcat container on any c
 
 Configure maven to download Webapp Runner     
 
-
+```xml
        <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
@@ -88,7 +88,7 @@ Configure maven to download Webapp Runner
                 </execution>
             </executions>
         </plugin>
-
+```
 
 
 # Deploy website  to Heroku
@@ -99,7 +99,9 @@ Configure maven to download Webapp Runner
 
 > web:    java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
 
-Commit your changes to Git:
+
+
+# Commit your changes to Git:
 
 > $ git init
 
