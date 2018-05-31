@@ -1,3 +1,6 @@
+### https://commons.apache.org/proper/commons-csv/user-guide.html
+### https://commons.apache.org/proper/commons-csv/project-reports.html
+### https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVFormat.html
 ### https://dzone.com/articles/working-with-csv-files-in-java-using-apache-common
 ### https://www.callicoder.com/java-read-write-csv-file-apache-commons-csv/
 
