@@ -1533,3 +1533,31 @@ and exicute command
 	➜  classes git:(master) ✗
 
 
+
+
+
+
+
+
+# Apache Maven 3 Cookbook
+
+> mvn -version
+
+create maven project
+
+> mvn archetype:generate
+
+#### Then you will see a rather large list of archetypes. Here we have considered that it is archetype number 1198 named maven-archetype-quickstart.
+
+	Enter version:
+	Enter groupId:
+	Enter artifactId:
+	Enter 1.0-SNAPSHOT:
+	Enter package:
+	done done
+
+
+
+>
+
+
