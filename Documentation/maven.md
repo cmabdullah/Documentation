@@ -1557,7 +1557,13 @@ create maven project
 	done done
 
 
+# Default lifecycle
 
->
+1. Validate: validates that all project information is available and is correct f Compile: compiles the source code
+2. Test: runs unit tests within a suitable framework
+3. Package: packages the compiled code in its distribution format
+4. Integration-test: processes the package in the integration-test environment f Verify: runs checks to verify that the package is valid
+5. Install: installs the package in the local repository
+6. Deploy: installs the  nal package in a remote repository
 
 
