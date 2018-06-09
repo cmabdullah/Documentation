@@ -1,7 +1,7 @@
 
 # 1 HelloWorld
 
-### HelloWorld
+### 1.1 HelloWorld
 ```java
 package _1HelloWorld;
 
@@ -17,7 +17,7 @@ public class HelloWorld {
 
 # 2 I/o
 
-### InputInt_Float_doubleValue
+### 2.1 InputInt_Float_doubleValue
 ```java
 package _2Input;
 
@@ -38,7 +38,7 @@ public class InputInt_Float_doubleValue {
 }
 
 ```
-### InputString
+### 2.2 InputString
 ```java
 package _2Input;
 
@@ -66,7 +66,7 @@ public class InputString {
 }
 
 ```
-### StaticValueDecleration
+### 2.3 StaticValueDecleration
 ```java
 package _2Input;
 
@@ -83,7 +83,7 @@ public class StaticValueDecleration {
 
 # 3 If Else
 
-### IfElse
+### 3.1 IfElse
 ```java
 package _3IfElse;
 import java.util.*;
@@ -113,7 +113,7 @@ public class IfElse {
 
 
 # 4 All Loop
-### AllLoops
+### 4.1 AllLoops
 ```java
 package _4Loops;
 
@@ -143,7 +143,7 @@ public class AllLoops {
 }
 
 ```
-### LabelledLoops
+### 4.2 LabelledLoops
 ```java
 package _4Loops;
 
@@ -165,7 +165,10 @@ public class LabelledLoops {
 }
 
 ```
-### SwitchCase
+
+# 5 Switch Case
+
+### 5.1 SwitchCase
 ```java
 package _5SwitchCase;
 import java.util.*;
@@ -202,7 +205,7 @@ public class SwitchCase {
 
 ```
 # 6 Arrays
-### OneDimensionArrays
+### 6.1 OneDimensionArrays
 ```java
 package _6Arrays;
 import java.util.*;
@@ -239,7 +242,7 @@ public class OneDimensionArrays {
 }
 
 ```
-### OneDimensionStringArrays
+### 6.2 OneDimensionStringArrays
 ```java
 package _6Arrays;
 import java.util.*;
@@ -276,7 +279,7 @@ public class OneDimensionStringArrays {
 }
 
 ```
-### TwoDimensionArrays
+### 6.3 TwoDimensionArrays
 ```java
 package _6Arrays;
 import java.util.*;
@@ -335,7 +338,7 @@ public class TwoDimensionArrays {
 }
 
 ```
-### TwoDimensionStringArrays
+### 6.4 TwoDimensionStringArrays
 ```java
 package _6Arrays;
 import java.util.*;
@@ -382,7 +385,7 @@ public class TwoDimensionStringArrays {
 
 ```
 # 7 Multiple Clases
-### MultipleClassInOne
+### 7.1 MultipleClassInOne
 ```java
 package _7MultipleClases;
 
@@ -405,7 +408,7 @@ public class MultipleClassInOne {
 
 ```
 # 8 Type Casting
-### Automatic
+### 8.1 Automatic
 ```java
 package _8TypeCasting;
 
@@ -421,7 +424,7 @@ public class Automatic {
 }
 
 ```
-### Menual
+### 8.2 Menual
 ```java
 package _8TypeCasting;
 
@@ -443,7 +446,7 @@ public class Menual {
 
 ```
 # 9 Operators
-### Arithmatic
+### 9.1 Arithmatic
 ```java
 package _9Operators;
 
@@ -469,7 +472,7 @@ public class Arithmatic {
 }
 
 ```
-### Assignment
+### 9.2 Assignment
 ```java
 package _9Operators;
 
@@ -485,7 +488,7 @@ public class Assignment {
 }
 
 ```
-### Bitwise
+### 9.3 Bitwise
 ```java
 /**
 Reference https://www.tutorialspoint.com/java/java_bitwise_operators_examples.htm
@@ -526,7 +529,7 @@ public class Bitwise {
 }
 
 ```
-### ConditionalOrThe
+### 9.4 ConditionalOrThe
 ```java
 package _9Operators;
 
@@ -543,7 +546,7 @@ public class ConditionalOrThe {
 }
 
 ```
-### IncrementAndDecrement
+### 9.5 IncrementAndDecrement
 ```java
 package _9Operators;
 
@@ -563,7 +566,7 @@ public class IncrementAndDecrement {
 }
 
 ```
-### Logical
+### 9.5 Logical
 ```java
 package _9Operators;
 
@@ -582,7 +585,7 @@ public class Logical {
 }
 
 ```
-### Relational
+### 9.6 Relational
 ```java
 package _9Operators;
 
@@ -603,7 +606,7 @@ public class Relational {
 }
 
 ```
-### SpecialOrDot
+### 9.7 SpecialOrDot
 ```java
 package _9Operators;
 
@@ -621,7 +624,7 @@ public class SpecialOrDot {
 }
 ```
 # 10 Strings
-### BasicStrings
+### 10.1 BasicStrings
 ```java
 package _10Strings;
 
@@ -652,7 +655,7 @@ public class BasicStrings {
 }
 
 ```
-### StringBufferClass
+### 10.2 StringBufferClass
 ```java
 package _10Strings;
 
@@ -673,7 +676,7 @@ public class StringBufferClass {
 # 11 Vector
 
 
-### VectorBasicTools
+### 11.0 VectorBasicTools
 ```java
 package _11Vector;
 
@@ -713,7 +716,7 @@ public class VectorBasicTools {
 
 
 
-### 01 Size
+### 11.1 Size
 ```java
 package _11Vector;
 
@@ -730,7 +733,7 @@ public class _01_Size {
 }
 
 ```
-### 02 capacity
+### 11.2 capacity
 ```java
 package _11Vector;
 
@@ -750,7 +753,7 @@ public class _02_capacity {
 }
 
 ```
-### 03 AddElementAndElementAt
+### 11.3 AddElementAndElementAt
 ```java
 package _11Vector;
 
@@ -779,7 +782,7 @@ public class _03_AddElementAndElementAt {
 }
 
 ```
-### 04 SetAndGet
+### 11.4 SetAndGet
 ```java
 package _11Vector;
 
@@ -812,7 +815,7 @@ public class _04_SetAndGet {
 }
 
 ```
-### 05 InsertElementAt_AndRemoveElementAt
+### 11.5 InsertElementAt_AndRemoveElementAt
 ```java
 package _11Vector;
 
@@ -854,7 +857,7 @@ public class _05_InsertElementAt_AndRemoveElementAt {
 }
 
 ```
-### 06 RemoveElement_And_RemoveAllElements
+### 11.6 RemoveElement_And_RemoveAllElements
 ```java
 package _11Vector;
 
@@ -892,7 +895,7 @@ public class _06RemoveElement_And_RemoveAllElements {
 }
 
 ```
-### 07 Remove_And_Clear
+### 11.7 Remove_And_Clear
 ```java
 package _11Vector;
 
@@ -932,7 +935,7 @@ public class _07Remove_And_Clear {
 }
 
 ```
-### 
+### 11.8 FirstElement_And_LastElement
 ```java
 package _11Vector;
 
@@ -965,7 +968,7 @@ public class _08_FirstElement_And_LastElement {
 }
 
 ```
-### 09 isEmpty_And_contains
+### 11.9 isEmpty_And_contains
 ```java
 package _11Vector;
 
@@ -997,7 +1000,7 @@ public class _09_isEmpty_And_contains {
 }
 
 ```
-### 10 indexOf_And_lastIndexOf
+### 11.10 indexOf_And_lastIndexOf
 ```java
 package _11Vector;
 
@@ -1011,7 +1014,7 @@ public class _10indexOf_And_lastIndexOf {
 }
 
 ```
-### 11 copyIntro
+### 11.11 copyIntro
 ```java
 package _11Vector;
 
@@ -1049,7 +1052,7 @@ public class _11_copyIntro {
 
 ```
 # 12 WrapperClass
-### 01 PrimitiveToWrapperClassObject
+### 12.1 PrimitiveToWrapperClassObject
 ```java
 package _12WrapperClass;
 
@@ -1080,7 +1083,7 @@ public class _01PrimitiveToWrapperClassObject {
 }
 
 ```
-### 02 PrimitiveToStringObject
+### 12.2 PrimitiveToStringObject
 ```java
 package _12WrapperClass;
 
@@ -1107,7 +1110,7 @@ public class _02PrimitiveToStringObject {
 }
 
 ```
-### 03 StringObjectToWrapperClassObject
+### 12.3 StringObjectToWrapperClassObject
 ```java
 package _12WrapperClass;
 
@@ -1138,7 +1141,7 @@ public class _03StringObjectToWrapperClassObject {
 }
 
 ```
-### 04 WrapperClassObjectToPrimitiveType
+### 12.4 WrapperClassObjectToPrimitiveType
 ```java
 package _12WrapperClass;
 
@@ -1156,7 +1159,7 @@ public class _04WrapperClassObjectToPrimitiveType {
 }
 
 ```
-### 05 AutoBoxingUnBoxing
+### 12.5 AutoBoxingUnBoxing
 ```java
 package _12WrapperClass;
 
@@ -1174,7 +1177,7 @@ public class _05AutoBoxingUnBoxing {
 }
 
 ```
-### 06 EnumeratedType
+### 12.6 EnumeratedType
 ```java
 package _12WrapperClass;
 
@@ -1199,7 +1202,7 @@ public class _06EnumeratedType {
 }
 
 ```
-### 07 AnnoTations
+### 12.7 AnnoTations
 ```java
 package _12WrapperClass;
 import java.lang.*;
@@ -1230,7 +1233,7 @@ public class _07AnnoTations {
 
 ```
 # 13 Methods
-### AbstractMethod
+### 13.1 AbstractMethod
 ```java
 package _13Methods;
 abstract class Ac{
@@ -1248,7 +1251,7 @@ public class AbstractMethod extends Ac{
 }
 ```
 
-### ConstructorsMethod
+### 13.2 ConstructorsMethod
 ```java
 package _13Methods;
 class BB{
@@ -1292,7 +1295,7 @@ public class ConstructorsMethod {
 
 ```
 
-### GettingReturnValue
+### 13.3 GettingReturnValue
 ```java
 package _13Methods;
 class AA{
@@ -1317,7 +1320,7 @@ public class GettingReturnValue {
 
 ```
 
-### MethodParameters
+### 13.4 MethodParameters
 ```java
 package _13Methods;
 class AAA{
@@ -1345,7 +1348,7 @@ public class MethodParameters {
 
 ```
 
-### Methods
+### 13.5 Methods
 ```java
 package _13Methods;
 class A{
@@ -1368,7 +1371,7 @@ public class Methods {
 
 ```
 
-### MethodsOverLoading
+### 13.2 MethodsOverLoading
 ```java
 package _13Methods;
 class CCC{
@@ -1407,7 +1410,7 @@ public class MethodsOverLoading {
 
 ```
 
-### NestingOfMethod
+### 13.6 NestingOfMethod
 ```java
 package _13Methods;
 class NM{
@@ -1437,7 +1440,7 @@ public class NestingOfMethod {
 
 ```
 
-### OverrIdingMethod
+### 13.7 OverrIdingMethod
 ```java
 package _13Methods;
 class Super{
@@ -1470,7 +1473,7 @@ public class OverrIdingMethod {
 }
 ```
 
-### PrivateMethod
+### 13.8 PrivateMethod
 ```java
 /**
  * not completed
@@ -1492,7 +1495,7 @@ public class PrivateMethod {
 
 ```
 
-### ProtectedMethod
+### 13.9 ProtectedMethod
 ```java
 package _13Methods;
 class AccessProtectedChiled {
@@ -1511,7 +1514,7 @@ public class ProtectedMethod {
 
 ```
 
-### StaticMethod
+### 13.10 StaticMethod
 ```java
 package _13Methods;
 
@@ -1539,7 +1542,7 @@ public class StaticMethod {
 
 # 14 Public Privat Protected
 
-### 
+### 14.1 PublicPrivatProtected
 ```java
 package _14PublicPrivatProtected;
 class p{
@@ -1570,7 +1573,7 @@ public class PublicPrivatProtected {
 
 # 15 Inheritance
 
-### 
+### 15.1 HierArchical
 ```java
 package _15Inheritance;
 public class HierArchical {
@@ -1609,7 +1612,7 @@ class D extends A{
 }
 ```
 
-### Multilevel
+### 15.2 Multilevel
 ```java
 package _15Inheritance;
 public class Multilevel extends Y{
@@ -1636,7 +1639,7 @@ class Y extends X{
 }
 ```
 
-### Single
+### 15.3 Single
 ```java
 package _15Inheritance;
 class Room{//inherited room
@@ -1673,7 +1676,7 @@ public class Single {
 
 ```
 # 16 Interfaces
-### BasicInterface
+### 16.1 BasicInterface
 ```java
 package _16Interfaces;
 interface Vehicle1 {
@@ -1714,7 +1717,7 @@ public class BasicInterface {
 
 ```
 
-### DefiningInterface
+### 16.2 DefiningInterface
 ```java
 package _16Interfaces;
 interface Area{
@@ -1745,7 +1748,7 @@ public interface DefiningInterface {
 }
 ```
 
-### ExtendingInterface
+### 16.3 ExtendingInterface
 ```java
 package _16Interfaces;
 
@@ -1779,7 +1782,7 @@ public class ExtendingInterface {
 
 ```
 
-### InterfaceImplements
+### 16.4 InterfaceImplements
 ```java
 package _16Interfaces;
 
@@ -1816,7 +1819,7 @@ public class InterfaceImplements {
 
 ```
 
-### InterfaceWithMultipleBaseClass
+### 16.5 InterfaceWithMultipleBaseClass
 ```java
 package _16Interfaces;
 
@@ -1861,7 +1864,7 @@ public class InterfaceWithMultipleBaseClass {
 
 ```
 
-### InterfaceWithMultipleDeriveClass
+### 16.6 InterfaceWithMultipleDeriveClass
 ```java
 package _16Interfaces;
 
@@ -1906,7 +1909,7 @@ class InterfaceWithMultipleDeriveClass {
 
 ```
 
-### MultipleInterfaceWithDeriveClass
+### 16.7 MultipleInterfaceWithDeriveClass
 ```java
 package _16Interfaces;
 
@@ -1932,7 +1935,7 @@ public class MultipleInterfaceWithDeriveClass {
 }
 
 ```
-# 16 ThreadTest 
+# 16.8
 ### ThreadTest
 ```java
 package _16ThreadsTest;
@@ -1998,7 +2001,7 @@ class C extends Thread {
 
 ```
 # 17 Thread
-### 
+### 17.1 CreatingThreadByImplementingTheRunnableInterface
 ```java
 package _17Thread;
 class cm implements Runnable{
@@ -2022,7 +2025,7 @@ public class CreatingThreadByImplementingTheRunnableInterface {
 
 ```
 
-### CreatingThreadUsingExtendedThreadAndStart
+### 17.2 CreatingThreadUsingExtendedThreadAndStart
 ```java
 package _17Thread;
 
@@ -2057,7 +2060,7 @@ public class CreatingThreadUsingExtendedThreadAndStart {
 
 ```
 
-### ThreadPriority
+### 17.3 ThreadPriority
 ```java
 package _17Thread;
 import java.util.*;
@@ -2105,7 +2108,7 @@ public class ThreadPriority {
 
 ```
 
-### ThreadSleep
+### 17.4 ThreadSleep
 ```java
 package _17Thread;
 class A extends Thread{
@@ -2153,7 +2156,7 @@ public class ThreadSleep {
 
 ```
 
-### ThreadStop
+### 17.5 ThreadStop
 ```java
 package _17Thread;
 class I extends Thread{
@@ -2197,7 +2200,7 @@ public class ThreadStop {
 
 ```
 
-### ThreadSynchronized
+### 17.6 ThreadSynchronized
 ```java
 package _17Thread;
 
@@ -2251,7 +2254,7 @@ public class ThreadSynchronized {
 
 ```
 
-### ThreadYield
+### 17.7 ThreadYield
 ```java
 package _17Thread;
 
@@ -2299,7 +2302,7 @@ public class ThreadYield {
 
 # 18 ErrorsAndExceptions
 
-### MultipleCatchBlock
+### 18.1 MultipleCatchBlock
 ```java
 package _18ErrorsAndExceptions;
 
@@ -2327,7 +2330,7 @@ public class MultipleCatchBlock {
 ```
 # 19 Package
 
-### Main
+### 19.1 Main
 ```java
 package _19Package;
 
