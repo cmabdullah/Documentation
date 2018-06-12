@@ -1604,3 +1604,72 @@ create maven project
 5. Source code quality checks
 6. Test driven development
 7. Acceptance testing automation f Deployment automation
+
+
+# maven-dependency-plugin
+# Maven dependencies have six possible scopes
+
+1. Compile: This is the default scope. Compile dependencies are available in the classpaths.
+2. Provided: This scope assumes that the JDK or the environment provides dependencies at runtime.
+3. Runtime: Dependencies that are required at runtime and are specified in the runtime classpaths.
+4. Test: Dependencies required for test compilation and execution.
+5. System: Dependency is always available, but the JAR is provided nonetheless.
+6. Import: Imports dependencies specified in POM included via the <dependencyManagement/> element.
+
+
+
+	$ mvn dependency:analyze
+	Analyzes dependencies (used, unused, declared, undeclared)
+	$ mvn dependency:analyze-duplicate
+	Determines duplicate dependencies
+	$ mvn dependency:resolve
+	Resolves all dependencies
+	$ mvn dependency:resolve-plugin
+	 Resolves all plugins
+	$ mvn dependency:tree
+	Displays dependency trees
+
+# Apache Maven PMD plugin
+##### The Apache Maven PMD plugin automatically runs the PMD code analysis tool on the source code and generates a site report with results.
+
+
+#### This plugin introduces four goals:
+1. pmd:pmd creates a PMD site report based on the rulesets and configuration set in the plugin
+2. pmd:cpd generates a report for PMD's Copy/Paste Detector (CPD) tool
+3. pmd:check verifies that the PMD report is empty and fails the build if it is not
+4. pmd:cpd-check verifies that the CPD report is empty and fails the build if it is not
+
+
+```xml
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>2.5</version>
+
+
+
+				<configuration>
+					<rulesets>
+						<ruleset>/rulesets/basic.xml</ruleset>
+						<ruleset>/rulesets/controversial.xml</ruleset>
+						<ruleset>http://localhost/design.xml</ruleset>
+					</rulesets>
+					<sourceEncoding>utf-8</sourceEncoding>
+					<minimumTokens>100</minimumTokens>
+					<targetJdk>1.7</targetJdk>
+				</configuration>
+			</plugin>
+
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.3</version>
+			</plugin>
+		</plugins>
+	</reporting>
+```
