@@ -1673,3 +1673,21 @@ create maven project
 		</plugins>
 	</reporting>
 ```
+
+
+# We'll use the popular JUnit framework to create a unit test. 
+
+#### JUnit framework 
+$ mvn test
+
+$ mvn install
+
+
+
+# Selenium is a popular automation testing framework
+#### 
+
+> mvn archetype:generate -DgroupId=com.abdullah.maven -DartifactId=MySampleWebAppS -DarchetypeArtifactId=maven-archetype-webapp
+
+
+
