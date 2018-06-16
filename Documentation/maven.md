@@ -2,64 +2,11 @@
 
 > mvn help:effective-pom
 
+##The order of execution depends on the order in which the goal(s) and the build
+phase(s) are invoked. For example, consider the command below. The clean and package arguments are build phases while thedependency:copy- dependencies is a goal.
 
 > mvn clean dependency:copy-dependencies package
 
-
-#### Result 
-
-	➜  nazmul git:(master) ✗ mvn clean dependency:copy-dependencies package
-	[INFO] Scanning for projects...
-	[INFO]
-	[INFO] ------------------------< com.abdullah:nazmul >-------------------------
-	[INFO] Building nazmul 0.0.1-SNAPSHOT
-	[INFO] --------------------------------[ jar ]---------------------------------
-	[INFO]
-	[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ nazmul ---
-	[INFO] Deleting /Users/abdullah/Documents/ServletAndJsp/nazmul/target
-	[INFO]
-	[INFO] --- maven-dependency-plugin:2.8:copy-dependencies (default-cli) @ nazmul ---
-	[INFO] Copying junit-3.8.1.jar to /Users/abdullah/Documents/ServletAndJsp/nazmul/target/dependency/junit-3.8.1.jar
-	[INFO]
-	[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ nazmul ---
-	[INFO] Using 'UTF-8' encoding to copy filtered resources.
-	[INFO] skip non existing resourceDirectory /Users/abdullah/Documents/ServletAndJsp/nazmul/src/main/resources
-	[INFO]
-	[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ nazmul ---
-	[INFO] Changes detected - recompiling the module!
-	[INFO] Compiling 1 source file to /Users/abdullah/Documents/ServletAndJsp/nazmul/target/classes
-	[INFO]
-	[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ nazmul ---
-	[INFO] Using 'UTF-8' encoding to copy filtered resources.
-	[INFO] skip non existing resourceDirectory /Users/abdullah/Documents/ServletAndJsp/nazmul/src/test/resources
-	[INFO]
-	[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ nazmul ---
-	[INFO] Changes detected - recompiling the module!
-	[INFO] Compiling 1 source file to /Users/abdullah/Documents/ServletAndJsp/nazmul/target/test-classes
-	[INFO]
-	[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ nazmul ---
-	[INFO] Surefire report directory: /Users/abdullah/Documents/ServletAndJsp/nazmul/target/surefire-reports
-
-	-------------------------------------------------------
-	 T E S T S
-	-------------------------------------------------------
-	Running com.abdullah.nazmul.AppTest
-	Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 sec
-
-	Results :
-
-	Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
-
-	[INFO]
-	[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ nazmul ---
-	[INFO] Building jar: /Users/abdullah/Documents/ServletAndJsp/nazmul/target/nazmul-0.0.1-SNAPSHOT.jar
-	[INFO] ------------------------------------------------------------------------
-	[INFO] BUILD SUCCESS
-	[INFO] ------------------------------------------------------------------------
-	[INFO] Total time: 3.634 s
-	[INFO] Finished at: 2018-04-05T07:44:09+06:00
-	[INFO] ------------------------------------------------------------------------
-	➜  nazmul git:(master) ✗
 
 > mvn post-clean
 
