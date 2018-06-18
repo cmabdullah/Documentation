@@ -320,9 +320,9 @@ package com.abdullah._2LuceneIndexingProcess;
  * page 58
  * **/
 import java.io.IOException;
-
 import com.abdullah.lucene.Indexer;
-
+// Lucen tester for search engine methode
+// lucen documentation for search engine purpose
 public class LuceneTester {
 	String indexDir = "/Users/abdullah/Documents/Lucen/Index";
 	String dataDir = "/Users/abdullah/Documents/Lucen/Data";
