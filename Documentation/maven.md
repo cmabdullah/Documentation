@@ -2,6 +2,14 @@
 
 > mvn help:effective-pom
 
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
 ##The order of execution depends on the order in which the goal(s) and the build
 phase(s) are invoked. For example, consider the command below. The clean and package arguments are build phases while thedependency:copy- dependencies is a goal.
 
@@ -20,6 +28,7 @@ phase(s) are invoked. For example, consider the command below. The clean and pac
 ### Profile Activation Examples
 ### Profile Activation via Environment Variables page 38
 
+> /usr/local/Cellar/maven/3.5.3/libexec/conf
 
 ## That means they'll remove the target folder
 > mvn clean package
@@ -55,11 +64,11 @@ create maven project
 
 # Default lifecycle
 
-1. Validate: validates that all project information is available and is correct f Compile: compiles the source code
+1. Validate: validates that all project information is available and is correct 
 2. Compile: compiles the source code
 3. Test: runs unit tests within a suitable framework
 4. Package: packages the compiled code in its distribution format
-5. Integration-test: processes the package in the integration-test environment f Verify: runs checks to verify that the package is valid
+5. Integration-test: processes the package in the integration-test environment 
 6. Verify: runs checks to verify that the package is valid
 7. Install: installs the package in the local repository
 8. Deploy: installs the  nal package in a remote repository
@@ -93,7 +102,8 @@ create maven project
 3. Dependency management
 5. Source code quality checks
 6. Test driven development
-7. Acceptance testing automation f Deployment automation
+7. Acceptance testing automation 
+8. Deployment automation
 
 
 # maven-dependency-plugin
@@ -115,7 +125,7 @@ create maven project
 	$ mvn dependency:resolve
 	Resolves all dependencies
 	$ mvn dependency:resolve-plugin
-	 Resolves all plugins
+	Resolves all plugins
 	$ mvn dependency:tree
 	Displays dependency trees
 
@@ -179,5 +189,7 @@ $ mvn install
 
 > mvn archetype:generate -DgroupId=com.abdullah.maven -DartifactId=MySampleWebAppS -DarchetypeArtifactId=maven-archetype-webapp
 
+## Documenting with a Maven site
 
+> mvn site:run
 
