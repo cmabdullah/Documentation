@@ -3,7 +3,6 @@
 > mvn help:effective-pom
 
 
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -17,6 +16,7 @@ phase(s) are invoked. For example, consider the command below. The clean and pac
 
 ## This plugin provides the ability to run Ant tasks from within Maven
 ## runs Ant tasks for Maven
+# maven-antrun-plugin extensively in our examples to print data on console. Refer Build Profiles chapter.
 
 > maven-antrun-plugin:run
 
