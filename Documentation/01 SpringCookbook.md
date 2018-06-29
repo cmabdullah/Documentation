@@ -60,6 +60,75 @@ public class HelloController {
 }
 
 ```
+
+# 02 Using Spring in a standared java app
+## AppConfig.java
+```java
+package com.springcookbook.config;
+
+import org.springframework.context.annotation.*;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import com.springcookbook.main.User;
+
+@Configuration
+
+public class AppConfig {
+	@Bean
+	public User admin() {
+		User u = new User();
+		u.setName("Abdullah Khan");
+		u.setSkill("Java programmer");
+		return u;
+	}
+}
+
+```
+## User.java
+```java
+package com.springcookbook.main;
+
+public class User {
+	private String name;
+	private String skill;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getSkill() {
+		return skill;
+	}
+	public void setSkill(String skill) {
+		this.skill = skill;
+	}
+	
+}
+
+```
+## Main.java
+```java
+package com.springcookbook.main;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.springcookbook.config.AppConfig;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		AnnotationConfigApplicationContext springContext = new AnnotationConfigApplicationContext(AppConfig.class);
+		User admin = (User)springContext.getBean("admin");
+		System.out.println("Admin NAme : "+ admin.getName());
+		System.out.println("Admin Skill : "+admin.getSkill());
+		springContext.close();
+	}
+
+}
+
+```
 ## 
 ```java
 
