@@ -342,9 +342,6 @@ there are many users
 
 # 03 Associating a route to a controller method
 
-
-
-
 ## AppConfig.java
 ```java
 package com.springcookbook.config;
@@ -442,9 +439,117 @@ there are many users
 
 
 
-## 
-```java
+# 04 Using page template with tiles
 
+## AppConfig.java
+```java
+package com.springcookbook.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+
+@Configuration
+@EnableWebMvc
+@ComponentScan(basePackages = {"com.springcookbook.controller"})
+public class AppConfig {
+	
+	//tiles configuration
+	@Bean
+	public TilesConfigurer tilesConfigurer() {
+		TilesConfigurer tilesConfigurer = new TilesConfigurer();
+		final String[] definitions = {"/WEB-INF/tiles.xml"};
+		tilesConfigurer.setDefinitions(definitions);
+		return tilesConfigurer;
+	}
+	//declere tiles as view resolver
+	@Bean
+	public ViewResolver tilesViewResolver() {
+		TilesViewResolver resolver = new TilesViewResolver();
+		return resolver;
+	}
+}
+```
+
+## ServletInitializer.java
+```java
+package com.springcookbook.config;
+
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+public class ServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
+
+	@Override
+	protected Class<?>[] getRootConfigClasses() {
+		// TODO Auto-generated method stub
+		return new Class<?> [0] ;
+	}
+	@Override
+	protected Class<?>[] getServletConfigClasses() {
+		// TODO Auto-generated method stub
+		return new Class<?>[] {AppConfig.class} ;
+	}
+	@Override
+	protected String[] getServletMappings() {
+		// TODO Auto-generated method stub
+		return new String [] {"/"} ;
+	}
+}
+
+```
+
+## UserController.java
+```java
+package com.springcookbook.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class UserController {
+	@RequestMapping("/user/home")
+	public String userList() {
+		return "home" ;
+	}
+}
+```
+## template.java
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Spring CookzBook</h1>
+</body>
+</html>
+```
+
+
+## tiles.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+   "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+   "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="template"
+		template="/WEB-INF/jsp/templates/template.jsp" />
+	<definition name="*" extends="template">
+
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}.jsp" />
+
+	</definition>
+</tiles-definitions>
 ```
 
 
