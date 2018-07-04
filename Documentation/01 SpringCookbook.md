@@ -340,7 +340,7 @@ there are many users
 ```
 
 
-# 03 Associating a route to a controller method
+# 03 Associating a route to a controller method(Data retrive failed from controller to jsp)
 
 ## AppConfig.java
 ```java
@@ -439,7 +439,7 @@ there are many users
 
 
 
-# 04 Using page template with tiles
+# 04 Using page template with tiles(I think this tool is not working, dont know why)
 
 ## AppConfig.java
 ```java
