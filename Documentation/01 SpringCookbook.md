@@ -530,6 +530,7 @@ public class UserController {
 </head>
 <body>
 <h1>Spring CookzBook</h1>
+<tiles:insertAttribute name="body"/>
 </body>
 </html>
 ```
