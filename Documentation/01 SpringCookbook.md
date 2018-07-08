@@ -1,4 +1,3 @@
-# Now I am following [Thinking In Java](https://goo.gl/vmjMJs) & [The complete referrence](https://bit.do/cmabdullah)Book 
 
 # 01 Hello World
 ## AppConfig.java
