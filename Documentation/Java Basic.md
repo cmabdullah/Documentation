@@ -2300,6 +2300,119 @@ public class ThreadYield {
 
 ```
 
+# Start 4 thread at a time
+```java
+package com.abdullah;
+
+import java.time.LocalTime;
+import java.util.Scanner;
+
+class A extends Thread{
+	long n, value;
+	A(long n){
+		this.n= n;
+	}
+	public void run() {
+	    System.out.println("Thread A Start Time : "+ LocalTime.now());
+		System.out.println("Thread A Started : "+fib(n));
+	    System.out.println("Thread A End Time : "+ LocalTime.now());
+	}
+	long  fib(long  n){
+	    if(n<3)
+	    	return 1;
+	    else
+	    return fib(n-2) + fib(n-1);
+	}
+}
+
+class B extends Thread{
+	long n, value;
+	B(long n){
+		this.n= n;
+	}
+	public void run() {
+	    System.out.println("Thread B Start Time : "+ LocalTime.now());
+		System.out.println("Thread B Started : "+fib(n));
+	    System.out.println("Thread B End Time : "+ LocalTime.now());
+	}
+	long  fib(long  n){
+	    if(n<3)
+	    	return 1;
+	    else
+	    return fib(n-2) + fib(n-1);
+	}
+}
+
+class C extends Thread{
+	long n, value;
+	C(long n){
+		this.n= n;
+	}
+	public void run() {
+	    System.out.println("Thread C Start Time : "+ LocalTime.now());
+		System.out.println("Thread C Started : "+fib(n));
+	    System.out.println("Thread C End Time : "+ LocalTime.now());
+	}
+	long  fib(long  n){
+	    if(n<3)
+	    	return 1;
+	    else
+	    return fib(n-2) + fib(n-1);
+	}
+}
+
+
+class D extends Thread{
+	long n, value;
+	D(long n){
+		this.n= n;
+	}
+	public void run() {
+	    System.out.println("Thread D Start Time : "+ LocalTime.now());
+		System.out.println("Thread D Started : "+fib(n));
+	    System.out.println("Thread D End Time : "+ LocalTime.now());
+	}
+	long  fib(long  n){
+	    if(n<3)
+	    	return 1;
+	    else
+	    return fib(n-2) + fib(n-1);
+	}
+}
+
+public class Main {
+
+	public static void main(String[] args) {
+		long n,o,p,q;
+		System.out.println("Enter 4 value for Thread A, B, C, D : ");
+		Scanner a = new Scanner(System.in);
+		n = a.nextLong();
+		o = a.nextLong();
+		p = a.nextLong();
+		q = a.nextLong();
+
+		A ob1 = new A(n);
+		B ob2 = new B(o);
+		C ob3 = new C(p);
+		D ob4 = new D(q);
+
+		ob1.start();
+		ob2.start();
+		ob3.start();
+		ob4.start();
+		System.out.println(Thread.activeCount());
+	    
+
+	}
+}
+
+
+```
+
+
+
+
+
 # 18 ErrorsAndExceptions
 
 ### 18.1 MultipleCatchBlock
