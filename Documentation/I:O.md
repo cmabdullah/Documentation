@@ -853,3 +853,72 @@ public class _26PasswordCompareSample {
 	}
 }
 ```
+
+
+
+##  _28CharacterStreamsPartI.java
+```java
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
+public class _28CharacterStreamsPartI {
+
+	public static void main(String[] args) {
+
+		try {
+			
+			//OutputStreamWriter is used to write charecter support utf 8
+			OutputStreamWriter out  =  new OutputStreamWriter(new FileOutputStream("Example4.txt"));
+			InputStreamReader in  =  new InputStreamReader(new FileInputStream("Example4.txt"));
+			//
+			System.out.println(out.getEncoding());
+			out.write("Hi cm abdullah");
+			out.close();
+			System.out.println("Write success");
+			
+			int data = in.read();
+			while (data != -1) {
+				System.out.print((char)data);
+				data= in.read();
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+}
+
+
+```
+## _29BufferedStream
+```java
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+
+public class _29BufferedStream {
+
+	public static void main(String[] args) {
+		try {
+
+			// FileWriter read characters insted of bytes
+			BufferedReader reader = new BufferedReader(new FileReader("Example4.txt"), 1);
+			BufferedWriter writer = new BufferedWriter(new FileWriter("Example5.txt"));
+			String line;
+			while ((line = reader.readLine()) != null ) {
+				writer.write(line);
+				writer.newLine();
+			}
+			writer.close();
+			System.out.println("Write Success");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+}
+
+
+```
+
