@@ -921,4 +921,43 @@ public class _29BufferedStream {
 
 
 ```
+## _30System_in
+```java
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class _30System_in {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Enter the port number :");
+		InputStreamReader in = new InputStreamReader(System.in);
+		BufferedReader reader = new BufferedReader(in);
+		boolean isValid = false;
+		
+		int port = 0;
+		while(!isValid) {
+			try {
+				String portString = reader.readLine();
+				port = Integer.parseInt(portString);
+				System.out.println("Port is accepted");
+				isValid = true;
+			}catch(Exception e) {
+				System.out.println("Please insert a number!");
+				System.out.println("Please enter port number : ");
+			}
+		}
+		System.out.println("Please enter server ip :");
+		String ipAddress = "";
+		try {
+			ipAddress = reader.readLine();
+		} catch (Exception e) {
+			System.out.println("Cannot read this ip address ");
+		}
+		System.out.println("Trying to connect to ip : "+ipAddress +" on port : "+port+".....");
+	}
+}
+
+```
+
 
