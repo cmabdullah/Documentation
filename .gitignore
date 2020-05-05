@@ -4,6 +4,7 @@
 *.swp
 *.exe
 *.o
+*.idea
 *.recommenders
 *.metadata
 *.classpath
